@@ -1,0 +1,65 @@
+import type { Offer } from "../types";
+
+export const offers: Offer[] = [
+  {
+    id: "of-breakfast",
+    slug: "breakfast-on-us",
+    name: "Breakfast On Us",
+    tagline: "Breakfast at Teraza is on us — every morning of your stay.",
+    perks: [
+      "Complimentary Teraza breakfast for 2",
+      "Free Wi-Fi & pool access",
+      "Early check-in (subject to availability)",
+    ],
+    discountPct: 0,
+    minNights: 1,
+    gradient: "from-amber-glow via-amber to-terracotta",
+    badge: "Free Breakfast",
+  },
+  {
+    id: "of-stay-longer",
+    slug: "stay-longer-save-more",
+    name: "Stay Longer, Save More",
+    tagline: "4 nights → save 15%. 7 nights → save 22%. Bohol slows you down anyway.",
+    perks: [
+      "15–22% off the flexible rate",
+      "One complimentary dinner for two",
+      "Daily breakfast included",
+    ],
+    discountPct: 18,
+    minNights: 4,
+    gradient: "from-palm via-palm-deep to-ink",
+    badge: "Free Dinner",
+  },
+  {
+    id: "of-honeymoon",
+    slug: "honeymoon-by-the-sea",
+    name: "Honeymoon by the Sea",
+    tagline: "A romantic Boholano honeymoon set against the Bohol Sea.",
+    perks: [
+      "Sparkling wine & rose petal welcome",
+      "Couples massage on day 2",
+      "Sunset dinner at Teraza Rooftop",
+      "Late checkout · 4pm",
+    ],
+    discountPct: 12,
+    minNights: 3,
+    gradient: "from-terracotta via-amber-deep to-amber-glow",
+    badge: "Romantic",
+  },
+  {
+    id: "of-airport-transfer",
+    slug: "free-airport-transfer",
+    name: "Touchdown · Free Transfer",
+    tagline: "Free private airport transfer from Panglao International (TAG).",
+    perks: [
+      "Complimentary private transfer from TAG",
+      "Welcome drink on arrival",
+      "Late checkout (subject to availability)",
+    ],
+    discountPct: 0,
+    minNights: 2,
+    gradient: "from-amber-warm via-gold-glow to-amber-deep",
+    badge: "Free Transfer",
+  },
+];

@@ -1,0 +1,23 @@
+IVYWALL — EXPERIENCES PAGE IMAGES
+Photo credits (Creative Commons Attribution-ShareAlike). Display these credits on the site
+(a single "Photo credits" line in the footer or a credits page is enough).
+
+exp_chocolate_hills.jpg      — "Chocolate Hills overview" by P199 / Wikimedia Commons, CC BY-SA 3.0
+exp_tarsier.jpg              — "Bohol tarsier" by JT Lim / Wikimedia Commons, CC BY-SA 3.0
+exp_loboc_river.jpg          — "Lunch cruise on the Loboc river" by Unbuttered Parsnip / Wikimedia Commons, CC BY-SA 4.0
+exp_hinagdanan_cave.jpg      — "Hinagdanan cave" by Pinay06 / Wikimedia Commons, CC BY-SA 3.0
+exp_balicasag.jpg            — "Balicasag Marine Sanctuary, Bohol" by Qaalvin / Wikimedia Commons, CC BY-SA 3.0
+exp_panglao_wall_diving.jpg  — "Divers in Bohol sea" by Leila Izachi / Wikimedia Commons, CC BY-SA 4.0
+
+Licence links: CC BY-SA 3.0 https://creativecommons.org/licenses/by-sa/3.0/
+               CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0/
+
+Card mapping (Experiences page):
+  Balicasag Dolphin & Marine Sanctuary -> exp_balicasag.jpg
+  Chocolate Hills & Countryside        -> exp_chocolate_hills.jpg
+  Tarsier Sanctuary                    -> exp_tarsier.jpg
+  Loboc River Cruise                   -> exp_loboc_river.jpg
+  Hinagdanan Cave                      -> exp_hinagdanan_cave.jpg
+  Panglao Wall Diving                  -> exp_panglao_wall_diving.jpg
+
+Note: If you edit/crop an image, release the edited version under the same CC BY-SA licence.

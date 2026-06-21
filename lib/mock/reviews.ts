@@ -1,0 +1,73 @@
+import type { Review } from "../types";
+
+// Illustrative guest stories — replace with verified real reviews pulled
+// from the resort's TripAdvisor account once connected.
+// Real listing: https://www.tripadvisor.com/Hotel_Review-g664893-d17512963
+export const reviews: Review[] = [
+  {
+    id: "rv-1",
+    guestName: "Hiroko & Kenji",
+    country: "Tokyo, Japan",
+    rating: 5,
+    date: "2026-03-12",
+    source: "Tripadvisor",
+    title: "Our favourite stay in the Philippines",
+    body: "Everything from the welcome to the pillow menu felt considered. The pool-access room was magical at sunset, and the Teraza rooftop dinner was the highlight of our trip. Wi-fi was a bit slow by the pool but honestly we just put the phones down — which was the point.",
+    stayType: "Honeymoon · 4 nights",
+  },
+  {
+    id: "rv-2",
+    guestName: "The Park Family",
+    country: "Seoul, Korea",
+    rating: 5,
+    date: "2026-02-04",
+    source: "Tripadvisor",
+    title: "Kids refused to leave the pool",
+    body: "The reservation team handled our late arrival request without any fuss — we got a free upgrade which we definitely didn't expect. Breakfast gets crowded around 8am so we learned to go at 7:30. Kids loved the pool. We already booked a return trip for December.",
+    stayType: "Family · 5 nights",
+  },
+  {
+    id: "rv-3",
+    guestName: "Marco & Lucia",
+    country: "Milan, Italy",
+    rating: 4,
+    date: "2026-01-22",
+    source: "Tripadvisor",
+    title: "Quiet luxury, genuinely warm staff",
+    body: "The team remembered our names by day two. Room was beautifully designed — banig textile on the headboard, capiz shell lamp, palm wood details. Never kitschy. One of our air-con remotes was broken on arrival but housekeeping sorted it within twenty minutes. Would return without hesitation.",
+    stayType: "Couple · 6 nights",
+  },
+  {
+    id: "rv-4",
+    guestName: "Jonathan T.",
+    country: "Singapore",
+    rating: 5,
+    date: "2025-12-18",
+    source: "Tripadvisor",
+    title: "Best four-star on Panglao",
+    body: "Three visits and counting. The little things make it — late checkout when you ask, a breakfast you actually look forward to, and a team that remembers returning guests. Nothing feels transactional here. This is the place I recommend to everyone who asks about Bohol.",
+    stayType: "Solo · 3 nights",
+  },
+  {
+    id: "rv-5",
+    guestName: "Mei Lin & David",
+    country: "Hong Kong",
+    rating: 5,
+    date: "2025-11-30",
+    source: "Tripadvisor",
+    title: "Honeymoon perfection",
+    body: "The suite overlooking Balicasag at sunrise — we still talk about it. The honeymoon setup (flower petals, welcome drink, note from the manager) felt sincere rather than staged. Only thing: we wished the spa had more evening slots. Book it early.",
+    stayType: "Honeymoon · 5 nights",
+  },
+  {
+    id: "rv-6",
+    guestName: "Aileen & Marco",
+    country: "Manila, Philippines",
+    rating: 5,
+    date: "2025-10-09",
+    source: "Tripadvisor",
+    title: "Felt like coming home",
+    body: "We chose Ivywall because a friend swore by the staff — and she was right. Friendly Boholano hospitality with four-star polish. The rooftop bar at golden hour is worth the whole trip. Already booked our anniversary next year.",
+    stayType: "Anniversary · 3 nights",
+  },
+];
