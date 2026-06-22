@@ -203,6 +203,26 @@ h1, h2, h3, .balance { text-wrap: balance; }
 .intro-sub     { animation: introFade 0.7s ease 1s both; }
 .intro-skip    { animation: introFade 0.7s ease 1.4s both; }
 
+/* Meet Ivy — journey chat that loops Ask → Book → In Bohol (9s cycle) */
+@keyframes ivbB1 { 0%,1%{opacity:0;transform:translateY(6px)} 5%,30%{opacity:1;transform:none} 33%,100%{opacity:0} }
+@keyframes ivbB2 { 0%,8%{opacity:0;transform:translateY(6px)} 13%,30%{opacity:1;transform:none} 33%,100%{opacity:0} }
+@keyframes ivbB3 { 0%,34%{opacity:0;transform:translateY(6px)} 40%,63%{opacity:1;transform:none} 66%,100%{opacity:0} }
+@keyframes ivbB4 { 0%,67%{opacity:0;transform:translateY(6px)} 72%,96%{opacity:1;transform:none} 100%{opacity:0} }
+@keyframes ivbB5 { 0%,75%{opacity:0;transform:translateY(6px)} 80%,96%{opacity:1;transform:none} 100%{opacity:0} }
+@keyframes ivbPhase { 0%,30%{opacity:1} 33%,100%{opacity:0} }
+.ivb-m1 { animation: ivbB1 9s ease infinite; }
+.ivb-m2 { animation: ivbB2 9s ease infinite; }
+.ivb-m3 { animation: ivbB3 9s ease infinite; }
+.ivb-m4 { animation: ivbB4 9s ease infinite; }
+.ivb-m5 { animation: ivbB5 9s ease infinite; }
+.ivb-ph { opacity: 0; }
+.ivb-p1 { animation: ivbPhase 9s steps(1) infinite; }
+.ivb-p2 { animation: ivbPhase 9s steps(1) infinite; animation-delay: 3s; }
+.ivb-p3 { animation: ivbPhase 9s steps(1) infinite; animation-delay: 6s; }
+@media (prefers-reduced-motion: reduce) {
+  .ivb-m1,.ivb-m2,.ivb-m3,.ivb-m4,.ivb-m5,.ivb-ph { animation: none; }
+}
+
 /* Photo placeholder helpers — gradient + grain looks intentional */
 .placeholder-photo {
   position: relative;
