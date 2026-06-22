@@ -133,6 +133,7 @@ export default function BookingWidget({ variant = "hero" }: { variant?: Variant 
               <button
                 onClick={handleSearch}
                 aria-label={t("common.search")}
+                data-ivy-search
                 className="group flex h-[58px] w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-b from-coral to-coral-deep px-5 text-[15px] font-bold text-pearl shadow-[0_16px_34px_-12px_rgba(245,112,10,0.75)] ring-1 ring-white/25 transition hover:brightness-110 active:scale-[0.99] md:h-[62px]"
               >
                 <Search className="h-4 w-4 transition group-hover:scale-110" />

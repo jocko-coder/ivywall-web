@@ -66,7 +66,7 @@
     var onHome = hero && /soft mornings|boholano/i.test(hero.textContent || "");
     if (!booking || !onHome) { removeHeroWaver(); return; }
 
-    var W = 150, H = 150;
+    var W = 104, H = 104;                              // smaller waver
     var wrap = document.getElementById("ivy-hero-waver");
     if (!wrap) {
       wrap = document.createElement("div"); wrap.id = "ivy-hero-waver";
@@ -75,11 +75,12 @@
       wrap._av = new IvyAvatar(wrap, { clips: { idle: C.wave }, fit: "contain", zoom: 1, gLo: 14, gHi: 50 }); // wave loops
       avatars.push(wrap._av);
     }
-    var r = booking.getBoundingClientRect();
-    // Stand Ivy on the top edge of the booking window, toward the right side,
-    // so she overlaps the top a touch (feet resting on it) without covering fields.
-    var left = r.right + window.scrollX - W - Math.max(8, r.width * 0.06);
-    var top = r.top + window.scrollY - H + 26;        // +26 => slight overlap onto the card
+    // Prefer standing on the orange Search button; fall back to the card's top-right.
+    var anchor = booking.querySelector("[data-ivy-search]") || booking;
+    var r = anchor.getBoundingClientRect();
+    // Centre her over the button and rest her feet on its top edge (small overlap).
+    var left = r.left + window.scrollX + r.width / 2 - W / 2;
+    var top = r.top + window.scrollY - H + 10;         // +10 => feet rest on the button's top edge
     wrap.style.left = Math.round(left) + "px";
     wrap.style.top = Math.round(top) + "px";
     requestAnimationFrame(function () { wrap.classList.add("in"); });
