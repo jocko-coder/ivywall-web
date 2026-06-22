@@ -1,7 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Plane, Car, Ship, MapPin, Clock } from "lucide-react";
+import HeroVideo from "@/components/ui/HeroVideo";
 
 const STATS = [
   { v: "2017", k: "Opened" },
@@ -52,18 +54,13 @@ export default function AboutStory() {
     <div>
       {/* ── Hero ── */}
       <section className="relative h-[80svh] min-h-[540px] overflow-hidden bg-palm-night">
-        <video
-          className="absolute inset-0 h-full w-full object-cover"
+        <HeroVideo
           src="/clips/ourstory.mp4"
           poster="/clips/ourstory_poster.jpg"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          aria-label="Life at The Ivywall — international comfort with a Boholano soul"
+          alt="Life at The Ivywall — international comfort with a Boholano soul"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-palm-night via-palm-night/30 to-palm-night/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-palm-night via-palm-night/65 to-palm-night/45" />
+        <div className="absolute inset-0 bg-gradient-to-r from-palm-night/55 via-palm-night/15 to-transparent md:to-50%" />
         <div className="container-x absolute inset-x-0 bottom-0">
           <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.2, 0.7, 0.2, 1] }} className="pb-12 md:pb-16">
             <span className="text-[11px] uppercase tracking-[0.3em] text-gold-glow">About · The Ivywall</span>
@@ -93,9 +90,8 @@ export default function AboutStory() {
           return (
             <motion.section key={c.n} {...fade} className="container-x py-14 md:py-20">
               <div className="grid items-center gap-8 md:grid-cols-2 md:gap-16">
-                <div className={`relative overflow-hidden rounded-[28px] shadow-deep ${flip ? "md:order-2" : ""}`}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={c.photo} alt={c.title} loading="lazy" className="aspect-[4/3] h-full w-full object-cover transition-transform duration-[1400ms] ease-out hover:scale-[1.04]" />
+                <div className={`relative aspect-[4/3] overflow-hidden rounded-[28px] shadow-deep ${flip ? "md:order-2" : ""}`}>
+                  <Image src={c.photo} alt={c.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform duration-[1400ms] ease-out hover:scale-[1.04]" />
                 </div>
                 <div className={flip ? "md:order-1" : ""}>
                   <div className="flex items-center gap-3 text-[11px] uppercase tracking-[0.24em] text-coral">
@@ -116,8 +112,7 @@ export default function AboutStory() {
 
       {/* ── Pull quote ── */}
       <section className="relative overflow-hidden bg-palm-night">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/photos/BWPlus_Ivywall_09_Rooftop_Bar_Night.jpg" alt="" aria-hidden className="absolute inset-0 h-full w-full object-cover opacity-35" />
+        <Image src="/photos/BWPlus_Ivywall_09_Rooftop_Bar_Night.jpg" alt="" aria-hidden fill sizes="100vw" className="object-cover opacity-35" />
         <div className="absolute inset-0 bg-gradient-to-b from-palm-night/80 via-palm-night/70 to-palm-night/90" />
         <motion.div {...fade} className="container-x relative py-24 text-center md:py-32">
           <span className="font-display text-5xl text-gold-glow/40">“</span>
@@ -133,8 +128,7 @@ export default function AboutStory() {
         <motion.section {...fade} className="container-x py-16 md:py-20">
           <div className="grid items-center gap-10 md:grid-cols-[1fr_1.3fr]">
             <div className="relative aspect-[4/5] overflow-hidden rounded-[28px] shadow-deep">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/photos/ivy_story_terrace_deck.jpg" alt="Teraza terrace deck at The Ivywall" className="h-full w-full object-cover" loading="lazy" />
+              <Image src="/photos/ivy_story_terrace_deck.jpg" alt="Teraza terrace deck at The Ivywall" fill sizes="(max-width: 768px) 100vw, 40vw" className="object-cover" />
             </div>
             <div>
               <span className="text-[11px] uppercase tracking-[0.24em] text-coral">The brand</span>

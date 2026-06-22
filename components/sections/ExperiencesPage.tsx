@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ExternalLink, Clock, ArrowUpRight } from "lucide-react";
 import { experiences } from "@/lib/mock/experiences";
@@ -17,8 +18,7 @@ export default function ExperiencesPage() {
     <div>
       {/* Hero */}
       <section className="relative h-[62svh] min-h-[440px] overflow-hidden bg-palm-night">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/experiences/exp_chocolate_hills.jpg" alt="The Chocolate Hills of Bohol" className="absolute inset-0 h-full w-full object-cover" />
+        <Image src="/experiences/exp_chocolate_hills.jpg" alt="The Chocolate Hills of Bohol" fill priority sizes="100vw" className="object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-palm-night via-palm-night/30 to-palm-night/35" />
         <div className="container-x absolute inset-x-0 bottom-0">
           <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.2, 0.7, 0.2, 1] }} className="pb-11 md:pb-16">
@@ -63,8 +63,7 @@ export default function ExperiencesPage() {
               className="group relative block overflow-hidden rounded-[22px] shadow-soft ring-1 ring-ink/5 transition hover:shadow-deep hover:ring-gold/40"
             >
               <div className="relative aspect-[3/4]">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={e.photo} alt={e.name} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]" />
+                <Image src={e.photo ?? "/experiences/exp_chocolate_hills.jpg"} alt={e.name} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]" />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/25 to-ink/5" />
                 <div className="absolute inset-x-4 top-4 flex items-center justify-between">
                   <span className="rounded-full bg-pearl/15 px-2.5 py-1 text-[9.5px] font-semibold uppercase tracking-[0.18em] text-gold-glow backdrop-blur">{e.category}</span>

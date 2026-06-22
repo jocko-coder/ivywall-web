@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Waves, Sparkles, Dumbbell, Baby, Wifi, Building2, Clock } from "lucide-react";
 import IllustrationSpot from "@/components/ui/IllustrationSpot";
@@ -38,9 +39,8 @@ export default function FacilitiesContent() {
     <div>
       {/* Hero */}
       <section className="relative h-[58svh] min-h-[420px] overflow-hidden bg-palm-night">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/photos/ivy_hero_2_pool.jpg" alt="The free-form pool at The Ivywall Resort" className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-palm-night via-palm-night/25 to-palm-night/35" />
+        <Image src="/photos/ivy_hero_2_pool.jpg" alt="The free-form pool at The Ivywall Resort" fill priority sizes="100vw" className="object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-t from-palm-night via-palm-night/40 to-palm-night/40" />
         <div className="container-x absolute inset-x-0 bottom-0">
           <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: [0.2, 0.7, 0.2, 1] }} className="pb-11 md:pb-16">
             <span className="text-[11px] uppercase tracking-[0.3em] text-gold-glow">Facilities &amp; Wellness</span>
@@ -72,8 +72,7 @@ export default function FacilitiesContent() {
                 <div className="relative aspect-[16/11] overflow-hidden">
                   {photo ? (
                     <>
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={photo} alt={f.name} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]" />
+                      <Image src={photo} alt={f.name} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]" />
                       <div className="absolute inset-0 bg-gradient-to-t from-ink/30 to-transparent" />
                     </>
                   ) : (

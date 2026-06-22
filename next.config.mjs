@@ -33,7 +33,12 @@ const securityHeaders = [
 const nextConfig = {
   reactStrictMode: true,
   // Native Next.js on Vercel (no static export) so API routes / serverless work.
-  images: { unoptimized: true },
+  // Image optimizer ON — serves per-device AVIF/WebP so phones/old devices get
+  // small images instead of full 1600px JPEGs.
+  images: {
+    formats: ["image/avif", "image/webp"],
+    deviceSizes: [360, 414, 640, 750, 828, 1080, 1280, 1600],
+  },
   trailingSlash: true,
   experimental: {
     typedRoutes: false,

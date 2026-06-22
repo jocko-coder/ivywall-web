@@ -2,8 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { roomTypes } from "@/lib/mock/rooms";
+import HeroVideo from "@/components/ui/HeroVideo";
 
 const peso = (n: number) => "₱" + n.toLocaleString("en-US");
 const fromRate = Math.min(...roomTypes.map((r) => r.baseRate));
@@ -47,14 +49,13 @@ function RoomBand({ r, idx }: { r: (typeof roomTypes)[number]; idx: number }) {
     >
       <div className="grid items-center gap-7 md:grid-cols-2 md:gap-14">
         {/* Photo */}
-        <div className={`relative overflow-hidden rounded-[28px] shadow-deep ${flip ? "md:order-2" : ""}`}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+        <div className={`relative aspect-[4/3] overflow-hidden rounded-[28px] shadow-deep ${flip ? "md:order-2" : ""}`}>
+          <Image
             src={r.gallery[0].photo ?? "/photos/BWPlus_Ivywall_02_Facade_Pool.jpg"}
             alt={r.name}
-            loading="lazy"
-            decoding="async"
-            className="aspect-[4/3] h-full w-full object-cover transition-transform duration-[1400ms] ease-out hover:scale-[1.04]"
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover transition-transform duration-[1400ms] ease-out hover:scale-[1.04]"
           />
           <span className="absolute left-4 top-4 rounded-full bg-ink/45 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-pearl backdrop-blur">
             {r.view}
@@ -128,18 +129,12 @@ export default function RoomsOTA() {
     <div ref={rootRef}>
       {/* Hero */}
       <section className="relative h-[68svh] min-h-[460px] overflow-hidden bg-palm-night">
-        <video
-          className="absolute inset-0 h-full w-full object-cover"
+        <HeroVideo
           src="/clips/rooms-hero.mp4"
           poster="/clips/rooms-hero-poster.jpg"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          aria-label="Aerial view of The Ivywall rooftop deck and rooms on Alona Beach, Panglao"
+          alt="Aerial view of The Ivywall rooftop deck and rooms on Alona Beach, Panglao"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-palm-night via-palm-night/25 to-palm-night/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-palm-night via-palm-night/40 to-palm-night/45" />
         <div className="container-x absolute inset-x-0 bottom-0">
           <div className="pb-10 md:pb-14">
             <span className="text-[11px] uppercase tracking-[0.3em] text-gold-glow">Rooms &amp; Suites</span>

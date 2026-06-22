@@ -62,9 +62,8 @@ export default function Hero() {
             animate={{ opacity: i === photoIdx ? 1 : 0 }}
             transition={{ duration: 2.2, ease: [0.2, 0.7, 0.2, 1] }}
             className="absolute inset-0 h-full w-full object-cover"
-            loading="eager"
-            // @ts-expect-error fetchPriority valid HTML but not in React types yet
-            fetchpriority="high"
+            loading={i === 0 ? "eager" : "lazy"}
+            fetchPriority={i === 0 ? "high" : "auto"}
             decoding={i === 0 ? "sync" : "async"}
           />
         ))}
