@@ -14,7 +14,7 @@ import { useState } from "react";
  * lingered on mobile). BUMP THIS STRING whenever any /ivy/*.js changes — it
  * changes the URL and forces every client to re-fetch the new script.
  */
-const MASCOT_V = "9";
+const MASCOT_V = "10";
 
 export default function IvyMascotLoader() {
   const [a1, setA1] = useState(false);

@@ -40,7 +40,7 @@
 
   /* ---- styles ---- */
   var dockSize = isMobile ? 80 : 116;        // a little bigger than before (was 64 / 88)
-  var dockBottom = isMobile ? 84 : 24;
+  var dockBottom = isMobile ? 20 : 24;
   var css = ""
     + "#ivy-dock{position:fixed;left:18px;bottom:" + dockBottom + "px;z-index:60;width:" + dockSize + "px;height:" + dockSize + "px;border:0;background:transparent;padding:0;cursor:pointer;opacity:0;transform:translateY(14px) scale(.9);transition:opacity .45s ease,transform .45s cubic-bezier(.18,.9,.3,1.2);-webkit-tap-highlight-color:transparent}"
     + "#ivy-dock.in{opacity:1;transform:none}"

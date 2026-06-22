@@ -24,7 +24,7 @@ export default function ReviewsBand() {
   const rest = reviews.slice(1, 5);
 
   return (
-    <section data-ivy-station="reviews" className="overflow-hidden py-24 pb-44 md:py-32 md:pb-48">
+    <section data-ivy-station="reviews" className="overflow-hidden py-16 pb-16 md:py-32 md:pb-48">
       <div className="container-x">
         <div className="grid items-end gap-8 md:grid-cols-[1.3fr_1fr]">
           <motion.div
@@ -107,6 +107,7 @@ export default function ReviewsBand() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.55, delay: i * 0.08 }}
+              className={i >= 2 ? "hidden md:block" : ""}
             >
               <ReviewCard review={r} />
             </motion.div>
