@@ -130,9 +130,9 @@ export default function RoomsOTA() {
       {/* Hero */}
       <section className="relative h-[68svh] min-h-[460px] overflow-hidden bg-palm-night">
         <HeroVideo
-          src="/clips/rooms-hero.mp4"
-          poster="/clips/rooms-hero-poster.jpg"
-          alt="Aerial view of The Ivywall rooftop deck and rooms on Alona Beach, Panglao"
+          src="/clips/rooms-hero-v2.mp4"
+          poster="/clips/rooms-hero-v2-poster.jpg"
+          alt="The Ivywall rooms and pool on Alona Beach, Panglao"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-palm-night via-palm-night/40 to-palm-night/45" />
         <div className="container-x absolute inset-x-0 bottom-0">
