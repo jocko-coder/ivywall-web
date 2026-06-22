@@ -55,7 +55,7 @@ export default function Header() {
     >
       <div className="container-x flex h-16 items-center justify-between gap-4 md:h-20">
         <Link href="/" aria-label="Ivywall home" className="min-w-0 shrink overflow-hidden">
-          <ResortLogo size={40} />
+          <ResortLogo size={34} />
         </Link>
 
         <nav aria-label="Primary navigation" className="hidden flex-1 items-center justify-center gap-0.5 lg:flex xl:gap-1">

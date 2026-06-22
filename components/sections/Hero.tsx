@@ -38,7 +38,7 @@ export default function Hero() {
   const [photoIdx, setPhotoIdx] = useState(0);
   useEffect(() => {
     if (reduce) return;
-    const id = setInterval(() => setPhotoIdx((i) => (i + 1) % HERO_PHOTOS.length), 9000);
+    const id = setInterval(() => setPhotoIdx((i) => (i + 1) % HERO_PHOTOS.length), 6000);
     return () => clearInterval(id);
   }, [reduce]);
 
