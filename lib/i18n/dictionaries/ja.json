@@ -305,5 +305,12 @@
     "resortColumn": "リゾート",
     "guestApp": "ゲストアプリを開く",
     "findUs": "アクセス"
+  },
+  "consent": {
+    "title": "プライバシーについて",
+    "body": "サイトの運営、設定の保存、アクセス解析のためにCookieを使用します。利用方法をお選びください。",
+    "accept": "すべて許可",
+    "reject": "必須のみ",
+    "policy": "Cookieポリシー"
   }
 }

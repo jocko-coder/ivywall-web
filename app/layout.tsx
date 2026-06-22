@@ -7,6 +7,8 @@ import StickyBookBar from "@/components/layout/StickyBookBar";
 import FloatingBookCTA from "@/components/layout/FloatingBookCTA";
 import IvyAgent from "@/components/fx/IvyAgent";
 import IvyMascotLoader from "@/components/fx/IvyMascotLoader";
+import CookieConsent from "@/components/fx/CookieConsent";
+import { Analytics } from "@vercel/analytics/react";
 import SmoothScroll from "@/components/fx/SmoothScroll";
 import CinematicIntro from "@/components/fx/CinematicIntro";
 import CustomCursor from "@/components/fx/CustomCursor";
@@ -81,6 +83,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <FloatingBookCTA />
           <IvyAgent />
           <IvyMascotLoader />
+          <CookieConsent />
+          <Analytics />
         </Providers>
       </body>
     </html>

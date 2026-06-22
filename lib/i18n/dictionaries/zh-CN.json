@@ -305,5 +305,12 @@
     "resortColumn": "度假村",
     "guestApp": "打开宾客应用",
     "findUs": "如何抵达"
+  },
+  "consent": {
+    "title": "您的隐私",
+    "body": "我们使用 Cookie 来运行网站、记住您的偏好并分析流量。请选择使用方式。",
+    "accept": "全部接受",
+    "reject": "仅必要",
+    "policy": "Cookie 政策"
   }
 }

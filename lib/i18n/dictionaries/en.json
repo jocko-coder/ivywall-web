@@ -305,5 +305,12 @@
     "resortColumn": "Resort",
     "guestApp": "Open the Guest App",
     "findUs": "Find us"
+  },
+  "consent": {
+    "title": "Your privacy",
+    "body": "We use cookies to run the site, remember your preferences, and measure traffic. Choose how we use them.",
+    "accept": "Accept all",
+    "reject": "Essential only",
+    "policy": "Cookie Policy"
   }
 }

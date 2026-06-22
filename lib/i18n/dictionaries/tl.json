@@ -305,5 +305,12 @@
     "resortColumn": "Resort",
     "guestApp": "Buksan ang Guest App",
     "findUs": "Hanapin kami"
+  },
+  "consent": {
+    "title": "Ang iyong privacy",
+    "body": "Gumagamit kami ng cookies para mapatakbo ang site, matandaan ang iyong mga setting, at masukat ang traffic. Piliin kung paano namin ito gagamitin.",
+    "accept": "Tanggapin lahat",
+    "reject": "Mahahalaga lang",
+    "policy": "Cookie Policy"
   }
 }

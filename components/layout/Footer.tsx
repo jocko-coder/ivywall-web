@@ -80,8 +80,9 @@ export default function Footer() {
           <p>© {new Date().getFullYear()} The Ivywall Resort-Panglao. {t("footer.rights")}</p>
           <div className="flex items-center gap-4">
             <a href="https://www.facebook.com/bwplusivywallpanglao/" target="_blank" rel="noreferrer" aria-label="Facebook" className="hover:text-amber-glow"><Facebook className="h-4 w-4" /></a>
-            <Link href="/contact">Privacy</Link>
-            <Link href="/contact">Terms</Link>
+            <Link href="/privacy" className="hover:text-amber-glow">Privacy</Link>
+            <Link href="/cookies" className="hover:text-amber-glow">Cookies</Link>
+            <Link href="/terms" className="hover:text-amber-glow">Terms</Link>
           </div>
         </div>
       </div>
