@@ -4,70 +4,92 @@ import Link from "next/link";
 import { experiences } from "@/lib/mock/experiences";
 import { useI18n } from "@/lib/i18n/I18nProvider";
 
-const TC: Record<string, string> = { Island: "island", Nature: "nature", Adventure: "adventure", Culture: "culture" };
-const LAYOUT = ["ivy-exp-feature", "ivy-exp-sec", "ivy-exp-sec", "ivy-exp-sm", "ivy-exp-sm", "ivy-exp-sm"];
+const Dia = () => (
+  <svg viewBox="0 0 10 10" width="9" height="9" fill="currentColor" aria-hidden>
+    <rect x="2.2" y="2.2" width="5.6" height="5.6" rx="1" transform="rotate(45 5 5)" />
+  </svg>
+);
+const Arrow = () => (
+  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+    <path d="M5 12h13M12 6l6 6-6 6" />
+  </svg>
+);
 
-const Dia = () => (<svg viewBox="0 0 10 10" width="9" height="9" fill="currentColor" aria-hidden><rect x="2.2" y="2.2" width="5.6" height="5.6" rx="1" transform="rotate(45 5 5)" /></svg>);
-const Clock = () => (<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden><circle cx="12" cy="12" r="9" /><path d="M12 7.5V12l3 2" /></svg>);
-const Arrow = () => (<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden><path d="M5 12h13M12 6l6 6-6 6" /></svg>);
-const Crown = () => (<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden><path d="M3 7.5l4.2 3.2L12 4l4.8 6.7L21 7.5 19.2 18H4.8L3 7.5z" /></svg>);
+/** Desktop stagger: alternating heights + downward offsets for the collage. */
+const H = [300, 236, 300, 236, 300, 236];
+const OFFSET = [0, 56, 0, 56, 0, 56];
 
 /**
- * "Explore Bohol" experiences bento — a 12-col mosaic (feature + 2 + 3),
- * horizontal-scroll carousel on mobile. Built from the shared experiences data.
+ * "Explore Bohol" — staggered collage. All six experiences visible at once over a
+ * giant faint "BOHOL"; compact (no long scroll). Hover a tile to zoom + reveal.
+ * Mobile collapses to a tidy 2-column grid so everything still shows in one glance.
  */
 export default function ExperiencesBento({ link = "/experiences" }: { link?: string }) {
   const { t } = useI18n();
   const items = experiences.slice(0, 6);
   const external = link.startsWith("http");
+
+  const Tile = ({ e }: { e: (typeof experiences)[number] }) => (
+    <>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={e.photo} alt={e.name} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.07]" />
+      <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/20 to-ink/5" />
+      <div className="absolute left-3 top-3 text-[9px] font-semibold uppercase tracking-[0.18em] text-gold-glow">{e.category}</div>
+      <div className="absolute inset-x-3 bottom-3">
+        <h3 className="font-display font-bold uppercase leading-[0.98] tracking-[-0.01em] text-pearl text-[15px]">{e.name}</h3>
+        <div className="mt-1.5 flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.1em] text-pearl/0 transition-colors duration-300 group-hover:text-gold-glow">
+          {t("expBento.view")} <Arrow />
+        </div>
+      </div>
+    </>
+  );
+
+  const wrapCls = "group relative overflow-hidden rounded-2xl ring-1 ring-ink/5 transition duration-300 hover:ring-2 hover:ring-gold/40";
+  const Card = ({ e, style }: { e: (typeof experiences)[number]; style?: React.CSSProperties }) =>
+    external ? (
+      <a href={link} target="_blank" rel="noreferrer" className={wrapCls} style={style}><Tile e={e} /></a>
+    ) : (
+      <Link href={link} className={wrapCls} style={style}><Tile e={e} /></Link>
+    );
+
   return (
-    <section className="container-x py-20 md:py-28">
-      <div className="ivy-exp">
-        <div className="ivy-exp-head">
-          <div className="ivy-exp-hl">
-            <div className="ivy-exp-kicker"><Dia /> {t("expBento.kicker")}</div>
-            <div className="ivy-exp-titlerow">
-              <h2 className="ivy-exp-title">{t("expBento.title1")}<br />{t("expBento.title2")}</h2>
-              <div className="ivy-exp-lead">
-                <span className="sep" />
-                <p>{t("expBento.lead")}</p>
-              </div>
-            </div>
+    <section className="container-x py-14 md:py-20">
+      {/* Header */}
+      <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div>
+          <div className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-coral">
+            <Dia /> {t("expBento.kicker")}
           </div>
+          <h2 className="mt-3 font-display font-bold leading-[0.98] tracking-[-0.025em] text-ink text-[clamp(32px,4vw,56px)]">
+            {t("expBento.title1")} {t("expBento.title2")}
+          </h2>
         </div>
+        <p className="max-w-sm text-[14.5px] leading-relaxed text-ink/65">{t("expBento.lead")}</p>
+      </div>
 
-        <div className="ivy-exp-cards">
-          {items.map((e, i) => {
-            const inner = (
-              <>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={e.photo} alt={e.name} loading="lazy" decoding="async" />
-                <div className="ivy-exp-tags">
-                  <span className={`ivy-exp-tag ${TC[e.category] || "island"}`}>{e.category.toUpperCase()}</span>
-                  <span className="ivy-exp-hrs"><Clock />{e.durationHrs} {t("expBento.hrs")}</span>
-                </div>
-                <div className="ivy-exp-body">
-                  <h3 className="ivy-exp-name">{e.name}</h3>
-                  {i < 3 && e.highlights?.length ? (
-                    <ul className="ivy-exp-bullets">{e.highlights.map((b) => <li key={b}>{b}</li>)}</ul>
-                  ) : null}
-                  <span className="ivy-exp-view">{t("expBento.view")} <Arrow /></span>
-                </div>
-                {i === 0 ? (
-                  <div className="ivy-exp-badge"><Crown /><span>{t("expBento.privateBadge")}</span></div>
-                ) : null}
-              </>
-            );
-            const cls = `ivy-exp-card ${LAYOUT[i]}`;
-            return external ? (
-              <a key={e.id} href={link} target="_blank" rel="noreferrer" className={cls}>{inner}</a>
-            ) : (
-              <Link key={e.id} href={link} className={cls}>{inner}</Link>
-            );
-          })}
+      {/* Desktop staggered collage */}
+      <div className="relative mt-9 hidden md:block" style={{ height: 300 }}>
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+          <span className="font-display font-bold tracking-[-0.04em] text-ink/[0.05] leading-none text-[150px]">BOHOL</span>
         </div>
+        <div className="relative flex items-start gap-4">
+          {items.map((e, i) => (
+            <div key={e.id} className="flex-1" style={{ marginTop: OFFSET[i] }}>
+              <Card e={e} style={{ display: "block", height: H[i] }} />
+            </div>
+          ))}
+        </div>
+      </div>
 
-        <div className="ivy-exp-foot"><Dia /> {t("expBento.foot")}</div>
+      {/* Mobile grid — all six in one glance */}
+      <div className="mt-10 grid grid-cols-2 gap-3 md:hidden">
+        {items.map((e) => (
+          <Card key={e.id} e={e} style={{ display: "block", height: 200 }} />
+        ))}
+      </div>
+
+      <div className="mt-6 flex items-center justify-center gap-2 text-[12px] text-ink/55">
+        <span className="text-gold-deep"><Dia /></span> {t("expBento.foot")}
       </div>
     </section>
   );
