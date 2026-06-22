@@ -7,7 +7,7 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import BookingWidget from "@/components/booking/BookingWidget";
@@ -41,6 +41,23 @@ export default function Hero() {
     const id = setInterval(() => setPhotoIdx((i) => (i + 1) % HERO_PHOTOS.length), 6000);
     return () => clearInterval(id);
   }, [reduce]);
+
+  // Rotating top two lines (the gold "a Boholano welcome." line stays constant) —
+  // showcases different moods for wider marketing reach.
+  const PHRASES = useMemo<[string, string][]>(
+    () => [
+      [t("hero.line1"), t("hero.line2")],
+      [t("hero.line1b"), t("hero.line2b")],
+      [t("hero.line1c"), t("hero.line2c")],
+    ],
+    [t]
+  );
+  const [phrase, setPhrase] = useState(0);
+  useEffect(() => {
+    if (reduce) return;
+    const id = setInterval(() => setPhrase((p) => (p + 1) % PHRASES.length), 6500);
+    return () => clearInterval(id);
+  }, [reduce, PHRASES.length]);
 
   return (
     <section
@@ -114,11 +131,11 @@ export default function Hero() {
             className="font-display font-black leading-[0.92] tracking-[-0.03em] text-pearl text-[clamp(40px,6.4vw,96px)] md:leading-[0.95]"
             style={{ textShadow: "0 1px 3px rgba(13,27,42,0.55), 0 2px 14px rgba(13,27,42,0.4)" }}
           >
-            <span className="block overflow-hidden pb-2">
-              <span className="headline-line headline-line-1">{t("hero.line1")}</span>
+            <span className="block pb-2">
+              <span key={`l1-${phrase}`} className="ivy-blur-in block">{PHRASES[phrase][0]}</span>
             </span>
-            <span className="block overflow-hidden pb-2">
-              <span className="headline-line headline-line-2">{t("hero.line2")}</span>
+            <span className="block pb-2">
+              <span key={`l2-${phrase}`} className="ivy-blur-in ivy-blur-in--2 block">{PHRASES[phrase][1]}</span>
             </span>
             <span className="block pb-2">
               <span

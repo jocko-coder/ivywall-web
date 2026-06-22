@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { motion, useScroll, useMotionValueEvent, useReducedMotion } from "framer-motion";
+import { ArrowDown } from "lucide-react";
 import SectionDivider from "@/components/ui/SectionDivider";
 import { useI18n } from "@/lib/i18n/I18nProvider";
 
@@ -41,14 +42,34 @@ export default function StickyStory() {
   }
 
   return (
-    <section ref={sectionRef} style={{ height: `${total * 90}vh` }} className="relative bg-pearl text-ink">
+    <section ref={sectionRef} className="relative h-[250vh] bg-pearl text-ink md:h-[330vh]">
       <div className="sticky top-16 flex h-[calc(100svh-4rem)] flex-col overflow-hidden md:top-20 md:h-[calc(100svh-5rem)]">
         {/* Header */}
-        <div className="container-x pb-5 pt-7 md:pt-10">
-          <SectionDivider label={t("stickyStory.label")} className="max-w-[180px]" />
-          <h2 className="mt-2 font-display text-2xl font-medium tracking-[-0.02em] text-ink/70 md:text-3xl">
-            <em className="italic text-gold-deep">{t("stickyStory.heading")}</em>
-          </h2>
+        <div className="container-x flex items-start justify-between gap-4 pb-5 pt-7 md:pt-10">
+          <div>
+            <SectionDivider label={t("stickyStory.label")} className="max-w-[180px]" />
+            <h2 className="mt-2 font-display text-2xl font-medium tracking-[-0.02em] text-ink/70 md:text-3xl">
+              <em className="italic text-gold-deep">{t("stickyStory.heading")}</em>
+            </h2>
+          </div>
+          {/* Progress + keep-scrolling cue — signals there's more to reveal below */}
+          <div className="flex shrink-0 flex-col items-end gap-2 pt-1">
+            <div className="flex items-center gap-1.5" aria-hidden>
+              {CHAPTERS.map((_, i) => (
+                <span
+                  key={i}
+                  className={`h-1 rounded-full transition-all duration-500 ${i === active ? "w-6 bg-gold-deep" : "w-1.5 bg-ink/20"}`}
+                />
+              ))}
+            </div>
+            <div
+              className={`flex items-center gap-1 text-[10px] uppercase tracking-[0.22em] text-ink/45 transition-opacity duration-500 ${
+                active === 0 ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              {t("hero.scrollCue")} <ArrowDown className="h-3 w-3 animate-bounce" />
+            </div>
+          </div>
         </div>
 
         {/* Arch row */}

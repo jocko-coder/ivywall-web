@@ -181,6 +181,17 @@ h1, h2, h3, .balance { text-wrap: balance; }
 .headline-line.headline-line-2 { animation-delay: 0.34s; }
 .headline-line.headline-line-3 { animation-delay: 0.48s; animation-duration: 1.05s; }
 
+/* Rotating hero taglines — soft blur dissolve on each phrase change */
+@keyframes ivyBlurIn {
+  from { opacity: 0; filter: blur(8px); }
+  to   { opacity: 1; filter: blur(0); }
+}
+.ivy-blur-in { animation: ivyBlurIn 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.ivy-blur-in.ivy-blur-in--2 { animation-delay: 0.12s; }
+@media (prefers-reduced-motion: reduce) {
+  .ivy-blur-in { animation: none; }
+}
+
 /* Photo placeholder helpers — gradient + grain looks intentional */
 .placeholder-photo {
   position: relative;
