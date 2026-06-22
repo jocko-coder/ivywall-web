@@ -9,8 +9,8 @@ import { useI18n } from "@/lib/i18n/I18nProvider";
 /** Photo per chapter; copy comes from the dictionary (stickyStory.cN*). */
 const CHAPTERS = [
   { photo: "/photos/ivy_story_aerial.jpg" },
-  { photo: "/photos/BWPlus_Ivywall_11_Family_Room.jpg" },
-  { photo: "/photos/BWPlus_Ivywall_21_Boodle_Platter.jpg" },
+  { photo: "/photos/ivy_sop_native_room.jpg" },
+  { photo: "/photos/ivy_sop_boodle_beach.jpg" },
   { photo: "/photos/ivy_story_terrace_deck.jpg" },
 ];
 

@@ -17,7 +17,7 @@ import { useI18n } from "@/lib/i18n/I18nProvider";
 const HERO_PHOTOS = [
   { src: "/photos/BWPlus_Ivywall_17_Facade_Teraza.jpg", alt: "The Ivywall facade and Teraza rooftop in afternoon light" },
   { src: "/photos/ivy_hero_4_night.jpg", alt: "The Ivywall Resort and Alona Beach at night, aerial" },
-  { src: "/photos/ivy_hero_3_poolwalk.jpg", alt: "The lagoon pool leading to the resort" },
+  { src: "/photos/ivy_hero_aerial_pool.jpg", alt: "Aerial view of The Ivywall pools, rooftop deck and cabanas" },
   { src: "/photos/ivy_hero_2_pool.jpg", alt: "The free-form pool with shade sails" },
 ];
 
