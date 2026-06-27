@@ -11,7 +11,6 @@ import IvyMascotLoader from "@/components/fx/IvyMascotLoader";
 import CookieConsent from "@/components/fx/CookieConsent";
 import { Analytics } from "@vercel/analytics/react";
 import SmoothScroll from "@/components/fx/SmoothScroll";
-import CinematicIntro from "@/components/fx/CinematicIntro";
 import CustomCursor from "@/components/fx/CustomCursor";
 import ScrollProgressBar from "@/components/fx/ScrollProgressBar";
 import Providers from "./providers";
@@ -63,14 +62,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(lodgingJsonLd()) }}
         />
-        {/* Preload ALL hero carousel photos so the crossfade never lands
-            on a not-yet-decoded image (which used to leak the dark
-            section bg through, looking like the hero "glitched out"). */}
-        <link rel="preload" as="image" href="/photos/BWPlus_Ivywall_17_Facade_Teraza.jpg" fetchPriority="high" />
-        <link rel="preload" as="image" href="/photos/BWPlus_Ivywall_01_Aerial_Beach.jpg" fetchPriority="high" />
-        <link rel="preload" as="image" href="/photos/BWPlus_Ivywall_12_Morning_Teraza.jpg" />
-        <link rel="preload" as="image" href="/photos/BWPlus_Ivywall_09_Rooftop_Bar_Night.jpg" />
-        <link rel="stylesheet" href="/iw-redesign.css" />
+        {/* Preload the hero video's first frame (used by the intro + hero). */}
+        <link rel="preload" as="image" href="/clips/ourstory_poster.jpg" fetchPriority="high" />
       </head>
       <body>
         <Script src="/iw-redesign.js" strategy="beforeInteractive" />
@@ -78,7 +71,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <CustomCursor />
           <ScrollProgressBar />
           <SmoothScroll />
-          <CinematicIntro />
           <Header />
           <main>{children}</main>
           <Footer />
