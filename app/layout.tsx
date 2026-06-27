@@ -1,4 +1,5 @@
 import "./globals.css";
+import Script from "next/script";
 import type { Metadata, Viewport } from "next";
 import { Young_Serif, Hanken_Grotesk, Pinyon_Script } from "next/font/google";
 import Header from "@/components/layout/Header";
@@ -69,8 +70,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preload" as="image" href="/photos/BWPlus_Ivywall_01_Aerial_Beach.jpg" fetchPriority="high" />
         <link rel="preload" as="image" href="/photos/BWPlus_Ivywall_12_Morning_Teraza.jpg" />
         <link rel="preload" as="image" href="/photos/BWPlus_Ivywall_09_Rooftop_Bar_Night.jpg" />
+        <link rel="stylesheet" href="/iw-redesign.css" />
       </head>
       <body>
+        <Script src="/iw-redesign.js" strategy="beforeInteractive" />
         <Providers>
           <CustomCursor />
           <ScrollProgressBar />
