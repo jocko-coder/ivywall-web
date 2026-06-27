@@ -7,7 +7,6 @@ import HorizontalRooms from "@/components/sections/HorizontalRooms";
 import DiningPreview from "@/components/sections/DiningPreview";
 import ExperiencesBento from "@/components/sections/ExperiencesBento";
 import ReviewsBand from "@/components/sections/ReviewsBand";
-import IvyBand from "@/components/sections/IvyBand";
 import LocationBand from "@/components/sections/LocationBand";
 import CtaFooter from "@/components/sections/CtaFooter";
 
@@ -23,7 +22,6 @@ export default function HomePage() {
       <DiningPreview />
       <ExperiencesBento link="/experiences" />
       <ReviewsBand />
-      <IvyBand />
       <LocationBand />
       <CtaFooter />
     </>

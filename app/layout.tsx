@@ -4,8 +4,6 @@ import type { Metadata, Viewport } from "next";
 import { Young_Serif, Hanken_Grotesk, Pinyon_Script } from "next/font/google";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import IvyAgent from "@/components/fx/IvyAgent";
-import IvyMascotLoader from "@/components/fx/IvyMascotLoader";
 import CookieConsent from "@/components/fx/CookieConsent";
 import { Analytics } from "@vercel/analytics/react";
 import SmoothScroll from "@/components/fx/SmoothScroll";
@@ -72,8 +70,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Header />
           <main>{children}</main>
           <Footer />
-          <IvyAgent />
-          <IvyMascotLoader />
           <CookieConsent />
           <Analytics />
         </Providers>
