@@ -1149,57 +1149,96 @@
   else window.addEventListener("load",function(){setTimeout(init,320);});
 })();
 
-/* iwx-rooms: /rooms — hero band + sticky stacking deck + direct-rate panel */
+/* iwx-rooms: /rooms — dark canvas + stacked color-block room deck */
 (function(){
   "use strict";
   function norm(p){p=p||location.pathname;if(p.length>1&&p.slice(-1)==="/")p=p.slice(0,-1);return p;}
   if(norm()!=="/rooms")return;
   var ROOMS=[
-    {slug:"superior",name:"Superior Room",cat:"Superior",view:"Garden",size:28,bed:"Queen",occ:2,rate:5800,ota:7250,desc:"Warm, restful retreats overlooking the resort's tropical gardens.",photo:"/photos/BWPlus_Ivywall_04_Superior_Room.jpg"},
-    {slug:"deluxe",name:"Deluxe Room",cat:"Deluxe",view:"Pool & Sea",size:32,bed:"King",occ:3,rate:7800,ota:9750,desc:"Bright pool- and sea-view rooms with a step-out balcony.",photo:"/photos/BWPlus_Ivywall_05_Deluxe_Room_SeaView.jpg"},
-    {slug:"premier",name:"Premier Room",cat:"Premier",view:"Pool Access",size:38,bed:"King",occ:3,rate:10500,ota:13125,desc:"Step straight from your terrace into the swimming pool.",photo:"/photos/BWPlus_Ivywall_06_Premier_Room.jpg"},
-    {slug:"family",name:"Family Room",cat:"Family",view:"Pool Side",size:48,bed:"Two Queens",occ:4,rate:12500,ota:15600,desc:"Generous two-queen rooms for families and small groups.",photo:"/photos/BWPlus_Ivywall_11_Family_Room.jpg"}
+    {slug:"superior",name:"Superior Room",cat:"Superior",view:"Garden view",size:28,bed:"Queen bed",occ:2,rate:5800,ota:7250,desc:"Warm, restful retreats overlooking the resort's tropical gardens.",body:"Our entry category — quiet, modern comfort with native Filipino touches, a private balcony onto the gardens, and a generous rain shower.",photo:"/photos/BWPlus_Ivywall_04_Superior_Room.jpg",cap:"Banig headboard · garden balcony"},
+    {slug:"deluxe",name:"Deluxe Room",cat:"Deluxe",view:"Pool & sea view",size:32,bed:"King bed",occ:3,rate:7800,ota:9750,desc:"Bright pool- and sea-view rooms with a step-out balcony.",body:"Wake up to the lagoon pool and a glimpse of the Bohol Sea. A larger living area and a balcony designed for slow mornings with coffee.",photo:"/photos/BWPlus_Ivywall_05_Deluxe_Room_SeaView.jpg",cap:"Step-out balcony · sea glimpse"},
+    {slug:"premier",name:"Premier Room",cat:"Premier · flagship",view:"Direct pool access",size:38,bed:"King bed",occ:3,rate:10500,ota:13125,desc:"Step straight from your terrace into the swimming pool.",body:"Our flagship pool-access category — one barefoot step from your room to the water, an extra-deep soaking tub, and a sunset-facing dining nook.",photo:"/photos/BWPlus_Ivywall_06_Premier_Room.jpg",cap:"Terrace opens onto the pool"},
+    {slug:"family",name:"Family Room",cat:"Family",view:"Pool side",size:48,bed:"Two queen beds",occ:4,rate:12500,ota:15600,desc:"Generous two-queen rooms for families and small groups.",body:"A wider footprint with a quiet seating area for evenings together — steps from the kids' playground and the lagoon pool.",photo:"/photos/BWPlus_Ivywall_11_Family_Room.jpg",cap:"Two queens · banig wall art"}
   ];
   var PLANS=[
-    {name:"Room Only",tag:"Lowest direct rate, room only.",mult:1,note:"Free cancellation up to 3 days before arrival."},
-    {name:"Breakfast Included",tag:"Tereza breakfast spread for every guest.",mult:1.12,badge:"Best Value",note:"Free cancellation up to 3 days before arrival."},
-    {name:"Flexible",tag:"Plans can change — book with peace of mind.",mult:1.18,badge:"Most Flexible",note:"Free cancellation until 6pm on day of arrival."},
-    {name:"Advance Saver",tag:"Save more when you commit early.",mult:.88,badge:"Lowest Price",note:"Non-refundable. No changes permitted."}
+    {name:"Room Only",tag:"Lowest direct rate, room only.",note:"Free cancellation up to 3 days before arrival."},
+    {name:"Breakfast Included",tag:"Tereza breakfast spread for every guest.",badge:"Best Value",note:"Free cancellation up to 3 days before arrival."},
+    {name:"Flexible",tag:"Plans can change — book with peace of mind.",badge:"Most Flexible",note:"Free cancellation until 6pm on day of arrival."},
+    {name:"Advance Saver",tag:"Save more when you commit early.",badge:"Lowest Price",note:"Non-refundable. No changes permitted."}
   ];
   function php(n){return "₱"+n.toLocaleString("en-PH");}
   try{
     if(!document.getElementById("iwx-rooms-css")){
       var st=document.createElement("style");st.id="iwx-rooms-css";
       st.textContent=[
-      '#iwx-rooms .rdeck{padding:clamp(20px,4vh,50px) 0 clamp(50px,8vh,100px)}',
+      '#iwx-rooms{background:#0c1116;color:#faf9f6}',
+      'body[data-iwx="rooms"] #iwf{margin-top:0}',
+      '#iwx-rooms .iwx-hero .iwx-h{color:#faf9f6}',
+      '#iwx-rooms .iwx-hero .iwx-h em{color:#F5B070}',
+      '#iwx-rooms .iwx-hero .iwx-eyebrow{color:#F5B070}',
+      '#iwx-rooms .iwx-hero .iwx-lead{color:rgba(250,249,246,.72)}',
+      '#iwx-rooms .iwx-fact .v{color:#F5B070}',
+      '#iwx-rooms .iwx-fact .k{color:rgba(250,249,246,.55)}',
+      '#iwx-rooms .iwx-wm{color:rgba(250,249,246,.05)!important}',
+      '#iwx-rooms .dkh{text-align:center;padding:clamp(20px,4vh,50px) 0 clamp(30px,5vh,60px)}',
+      '#iwx-rooms .dkh .t{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:clamp(28px,3.2vw,46px);color:#faf9f6}',
+      '#iwx-rooms .dkh .t em{font-style:italic;color:#F5B070}',
+      '#iwx-rooms .dkh .s{margin-top:10px;font:600 10.5px/1 "Hanken Grotesk",sans-serif;letter-spacing:.3em;text-transform:uppercase;color:rgba(250,249,246,.5)}',
+      /* deck */
+      '#iwx-rooms .rdeck{padding:0 0 clamp(60px,9vh,110px)}',
       '#iwx-rooms .rcw{position:relative}',
-      '#iwx-rooms .rcard{position:sticky;display:grid;grid-template-columns:1.15fr 1fr;background:#fffdf8;border:1px solid rgba(43,37,23,.1);border-radius:28px;overflow:hidden;box-shadow:0 24px 60px rgba(35,25,12,.13);min-height:min(66vh,560px)}',
-      '#iwx-rooms .rcard .ph{position:relative;overflow:hidden;min-height:280px}',
-      '#iwx-rooms .rcard .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}',
-      '#iwx-rooms .rcard:hover .ph img{transform:scale(1.05)}',
-      '#iwx-rooms .rcard .bd{display:flex;flex-direction:column;justify-content:center;padding:clamp(26px,3.4vw,56px)}',
-      '#iwx-rooms .rcard .cat{font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:#F5700A}',
-      '#iwx-rooms .rcard h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:clamp(30px,3.3vw,50px);line-height:1;color:#17140f;margin:12px 0 10px}',
-      '#iwx-rooms .rcard .dsc{font-size:14.5px;line-height:1.7;color:#6b6147;max-width:44ch}',
-      '#iwx-rooms .specs{display:flex;gap:clamp(18px,2.4vw,38px);margin:22px 0 6px;flex-wrap:wrap}',
-      '#iwx-rooms .specs .iwx-fact .v{font-size:clamp(20px,1.8vw,28px)}',
-      '#iwx-rooms .prow{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:14px 0 22px}',
-      '#iwx-rooms .prow .fr{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#7a6c4c;font-weight:600}',
-      '#iwx-rooms .prow .pr{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(24px,2.2vw,34px);font-weight:600;color:#17140f}',
-      '#iwx-rooms .prow .pr span{font-size:.55em;font-weight:500;color:#7a6c4c}',
-      '#iwx-rooms .sv{display:inline-flex;align-items:center;background:#F5700A;color:#fff;border-radius:999px;padding:7px 14px;font:700 10.5px/1 "Hanken Grotesk",sans-serif;letter-spacing:.14em;text-transform:uppercase}',
-      '#iwx-rooms .rr-panel{background:#0c1116;border-radius:28px;padding:clamp(30px,4.5vw,64px);color:#faf9f6;position:relative;overflow:hidden}',
-      '#iwx-rooms .rr-panel .iwx-eyebrow{color:#F5B070}',
-      '#iwx-rooms .rr-panel h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:clamp(30px,3.6vw,54px);line-height:1;color:#faf9f6;margin:16px 0 10px}',
-      '#iwx-rooms .rr-panel h2 em{font-style:italic;color:#F5B070;font-weight:400}',
-      '#iwx-rooms .rr-panel .sub{color:rgba(250,249,246,.72);font-size:14.5px;line-height:1.7;max-width:58ch}',
+      '#iwx-rooms .rcard{position:sticky;display:grid;grid-template-columns:1.25fr minmax(270px,34%);grid-template-rows:auto 1fr auto;gap:0 clamp(24px,3vw,54px);background:var(--bg);color:var(--ink);border-radius:24px;padding:clamp(26px,3.2vw,54px);min-height:min(74vh,620px);box-shadow:0 -18px 60px rgba(0,0,0,.45);text-decoration:none;overflow:hidden}',
+      '#iwx-rooms .rcard .idx{position:absolute;top:clamp(18px,2.4vw,40px);right:clamp(22px,2.8vw,48px);font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:clamp(44px,4.6vw,84px);line-height:1;color:var(--ink);opacity:.28}',
+      '#iwx-rooms .rcard .cat{font:700 10.5px/1 "Hanken Grotesk",sans-serif;letter-spacing:.3em;text-transform:uppercase;color:var(--acc)}',
+      '#iwx-rooms .rcard h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:clamp(38px,4.6vw,76px);line-height:.96;margin:14px 0 10px;color:var(--ink);max-width:10ch}',
+      '#iwx-rooms .rcard .sub{font-size:clamp(14px,1.15vw,16.5px);line-height:1.6;color:var(--mut);max-width:38ch;margin:0}',
+      '#iwx-rooms .rcard .med{grid-column:2;grid-row:1/4;align-self:center;justify-self:end;width:100%;max-width:400px;transform:rotate(1.6deg);border-radius:14px;background:var(--frame);padding:10px 10px 14px;box-shadow:0 26px 60px rgba(10,8,4,.35);transition:transform .6s cubic-bezier(.2,.7,.2,1)}',
+      '#iwx-rooms .rcard:hover .med{transform:rotate(0deg) scale(1.015)}',
+      '#iwx-rooms .rcard .med .ph{display:block;border-radius:8px;overflow:hidden;aspect-ratio:4/3.4;position:relative}',
+      '#iwx-rooms .rcard .med img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}',
+      '#iwx-rooms .rcard:hover .med img{transform:scale(1.06)}',
+      '#iwx-rooms .rcard .med .cap{display:block;padding:11px 4px 0;font:600 10px/1.4 "Hanken Grotesk",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--capc);text-align:center}',
+      '#iwx-rooms .rcard .bd{grid-column:1;grid-row:2;align-self:center;font-size:14px;line-height:1.75;color:var(--mut);max-width:46ch;padding:18px 0}',
+      '#iwx-rooms .ft{grid-column:1;grid-row:3;align-self:end}',
+      '#iwx-rooms .specs{display:flex;gap:clamp(18px,2.2vw,40px);flex-wrap:wrap;padding:16px 0;border-top:1px solid var(--line)}',
+      '#iwx-rooms .specs .sp .v{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;font-size:clamp(17px,1.5vw,23px);color:var(--ink)}',
+      '#iwx-rooms .specs .sp .k{margin-top:3px;font:700 9px/1 "Hanken Grotesk",sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--mut)}',
+      '#iwx-rooms .prow{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:14px 0 0}',
+      '#iwx-rooms .prow .pr{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;font-size:clamp(26px,2.4vw,38px);color:var(--ink)}',
+      '#iwx-rooms .prow .pr .fr,#iwx-rooms .prow .pr .un{font:600 10px/1 "Hanken Grotesk",sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--mut)}',
+      '#iwx-rooms .prow .sv{background:var(--svbg);color:var(--svfg);border-radius:999px;padding:8px 15px;font:700 10px/1 "Hanken Grotesk",sans-serif;letter-spacing:.14em;text-transform:uppercase}',
+      '#iwx-rooms .prow .go{margin-left:auto;display:inline-flex;align-items:center;gap:12px;font:700 11px/1 "Hanken Grotesk",sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--ink)}',
+      '#iwx-rooms .prow .go .cir{width:40px;height:40px;border-radius:50%;background:var(--btn);color:var(--btnfg);display:inline-flex;align-items:center;justify-content:center;font-size:15px;transition:transform .4s cubic-bezier(.2,.7,.2,1)}',
+      '#iwx-rooms .rcard:hover .go .cir{transform:translateX(5px)}',
+      /* palettes */
+      '#iwx-rooms .c1{--bg:#fffdf8;--ink:#17140f;--mut:#6b6147;--acc:#C4540A;--line:rgba(43,37,23,.14);--frame:#fff;--capc:#7a6c4c;--svbg:#F5700A;--svfg:#fff;--btn:#F5700A;--btnfg:#fff}',
+      '#iwx-rooms .c2{--bg:#dde4d5;--ink:#1d2417;--mut:#55604a;--acc:#C4540A;--line:rgba(29,36,23,.16);--frame:#f6f8f2;--capc:#55604a;--svbg:#F5700A;--svfg:#fff;--btn:#1d2417;--btnfg:#dde4d5}',
+      '#iwx-rooms .c3{--bg:#F5700A;--ink:#fff;--mut:rgba(255,255,255,.82);--acc:#ffe2c4;--line:rgba(255,255,255,.3);--frame:#fff3e6;--capc:#C4540A;--svbg:#17140f;--svfg:#ffe2c4;--btn:#fff;--btnfg:#C4540A}',
+      '#iwx-rooms .c4{--bg:#21261d;--ink:#f7f4ea;--mut:rgba(242,239,230,.7);--acc:#F5B070;--line:rgba(242,239,230,.18);--frame:#2c332a;--capc:#F5B070;--svbg:#F5700A;--svfg:#fff;--btn:#F5700A;--btnfg:#fff}',
+      /* direct-rate panel — cream on dark */
+      '#iwx-rooms .rr-panel{background:#fffdf8;border-radius:26px;padding:clamp(30px,4.5vw,64px);color:#17140f;position:relative;overflow:hidden}',
+      '#iwx-rooms .rr-panel .iwx-eyebrow{color:#C4540A}',
+      '#iwx-rooms .rr-panel h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:clamp(30px,3.6vw,54px);line-height:1;color:#17140f;margin:16px 0 10px}',
+      '#iwx-rooms .rr-panel h2 em{font-style:italic;color:#F5700A;font-weight:400}',
+      '#iwx-rooms .rr-panel .sub{color:#6b6147;font-size:14.5px;line-height:1.7;max-width:58ch}',
       '#iwx-rooms .plans{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px}',
-      '#iwx-rooms .plan{border:1px solid rgba(250,249,246,.16);border-radius:18px;padding:20px;position:relative}',
+      '#iwx-rooms .plan{border:1px solid rgba(43,37,23,.14);border-radius:18px;padding:20px;position:relative;background:#faf9f6}',
       '#iwx-rooms .plan .bg9{position:absolute;top:14px;right:14px;background:#F5700A;color:#fff;border-radius:999px;padding:5px 10px;font:700 9px/1 "Hanken Grotesk",sans-serif;letter-spacing:.12em;text-transform:uppercase}',
-      '#iwx-rooms .plan h4{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;font-size:21px;margin:0 0 6px;color:#faf9f6}',
-      '#iwx-rooms .plan .tg{font-size:12.5px;color:rgba(250,249,246,.66);line-height:1.55;min-height:38px}',
-      '#iwx-rooms .plan .nt{margin-top:12px;padding-top:12px;border-top:1px solid rgba(250,249,246,.14);font-size:11.5px;color:rgba(250,249,246,.55);line-height:1.5}',
-      '@media (max-width:820px){#iwx-rooms .rcard{grid-template-columns:1fr;position:static;min-height:0}#iwx-rooms .rcard .bd{padding:24px}#iwx-rooms .plans{grid-template-columns:1fr 1fr}#iwx-rooms .rcw{margin-bottom:18px!important}}',
+      '#iwx-rooms .plan h4{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;font-size:21px;margin:0 0 6px;color:#17140f}',
+      '#iwx-rooms .plan .tg{font-size:12.5px;color:#6b6147;line-height:1.55;min-height:38px}',
+      '#iwx-rooms .plan .nt{margin-top:12px;padding-top:12px;border-top:1px solid rgba(43,37,23,.12);font-size:11.5px;color:#8a7c5c;line-height:1.5}',
+      /* mobile */
+      '@media (max-width:820px){',
+      '#iwx-rooms .rcard{grid-template-columns:1fr;grid-template-rows:auto;position:static;min-height:0;padding:22px 22px 26px}',
+      '#iwx-rooms .rcard .idx{font-size:40px}',
+      '#iwx-rooms .rcard h3{font-size:clamp(32px,9vw,40px);max-width:none}',
+      '#iwx-rooms .rcard .med{grid-column:1;grid-row:2;justify-self:center;max-width:none;margin:18px 0 6px;transform:rotate(1.2deg)}',
+      '#iwx-rooms .rcard .bd{grid-row:3;padding:12px 0}',
+      '#iwx-rooms .ft{grid-row:4}',
+      '#iwx-rooms .prow .go{margin-left:0;width:100%;justify-content:space-between}',
+      '#iwx-rooms .rcw{margin-bottom:18px!important}',
+      '#iwx-rooms .plans{grid-template-columns:1fr}',
+      '}',
       '@media (prefers-reduced-motion:reduce){#iwx-rooms .rcard{position:static!important}}',
       ].join("");
       (document.head||document.documentElement).appendChild(st);
@@ -1207,17 +1246,19 @@
   }catch(e){}
   function cardHTML(r,i){
     var save=r.ota-r.rate;
-    return '<div class="rcw" style="z-index:'+(i+2)+';margin-bottom:'+(i<ROOMS.length-1?"clamp(30px,7vh,70px)":"0")+'">'+
-    '<a class="rcard irv" href="/rooms/'+r.slug+'/" style="top:calc(92px + '+(i*14)+'px);text-decoration:none">'+
-      '<div class="ph"><img src="'+r.photo+'" alt="'+r.name+'" loading="'+(i?"lazy":"eager")+'"></div>'+
-      '<div class="bd"><div class="cat">'+("0"+(i+1))+' · '+r.cat+' · '+r.view+' view</div><h3>'+r.name+'</h3><p class="dsc">'+r.desc+'</p>'+
-      '<div class="specs">'+
-        '<div class="iwx-fact"><div class="v">'+r.size+' m²</div><div class="k">Size</div></div>'+
-        '<div class="iwx-fact"><div class="v">'+r.bed+'</div><div class="k">Bed</div></div>'+
-        '<div class="iwx-fact"><div class="v">'+r.occ+'</div><div class="k">Guests</div></div>'+
+    return '<div class="rcw" style="z-index:'+(i+2)+';margin-bottom:'+(i<ROOMS.length-1?"clamp(40px,9vh,90px)":"0")+'">'+
+    '<a class="rcard c'+(i+1)+' irv" href="/rooms/'+r.slug+'/" style="top:calc(88px + '+(i*16)+'px)" aria-label="'+r.name+' — from '+php(r.rate)+' per night">'+
+      '<span class="idx" aria-hidden="true">'+("0"+(i+1))+'</span>'+
+      '<div style="grid-column:1;grid-row:1"><div class="cat">'+r.cat+'</div><h3>'+r.name+'</h3><p class="sub">'+r.desc+'</p></div>'+
+      '<div class="med"><span class="ph"><img src="'+r.photo+'" alt="'+r.name+'" loading="'+(i?"lazy":"eager")+'"></span><span class="cap">'+r.cap+'</span></div>'+
+      '<div class="bd">'+r.body+'</div>'+
+      '<div class="ft"><div class="specs">'+
+        '<span class="sp"><span class="v">'+r.size+' m²</span><br><span class="k">Size</span></span>'+
+        '<span class="sp"><span class="v">'+r.bed+'</span><br><span class="k">Bed</span></span>'+
+        '<span class="sp"><span class="v">Up to '+r.occ+'</span><br><span class="k">Guests</span></span>'+
+        '<span class="sp"><span class="v">'+r.view+'</span><br><span class="k">View</span></span>'+
       '</div>'+
-      '<div class="prow"><span class="fr">From</span><span class="pr">'+php(r.rate)+'<span> / night</span></span><span class="sv">Save '+php(save)+' direct</span></div>'+
-      '<span class="iwx-cl"><span class="lbl">View room</span><span class="cir">→</span></span>'+
+      '<div class="prow"><span class="pr"><span class="fr">From </span>'+php(r.rate)+'<span class="un"> / night</span></span><span class="sv">Save '+php(save)+' direct</span><span class="go">View room <span class="cir">→</span></span></div>'+
       '</div></a></div>';
   }
   function build(){
@@ -1229,21 +1270,26 @@
       '<div class="iwx-eyebrow irv">Eighty rooms · four categories</div>'+
       '<h1 class="iwx-h irv" style="margin-top:22px">Rooms &amp; <em>Suites.</em></h1>'+
       '<div class="iwx-rule irv"></div>'+
-      '<p class="iwx-lead irv">Soft Boholano luxury in four categories — Superior, Deluxe with pool view, Premier with direct pool access, and the Family Room. Every one finished in native Filipino detail: banig weave, capiz shell, palm wood.</p>'+
+      '<p class="iwx-lead irv">Soft Boholano luxury in four categories. Every room finished in native Filipino detail: banig weave, capiz shell, palm wood.</p>'+
       '<div class="iwx-meta irv">'+
         '<div class="iwx-fact"><div class="v">80</div><div class="k">Rooms</div></div>'+
         '<div class="iwx-fact"><div class="v">4</div><div class="k">Categories</div></div>'+
         '<div class="iwx-fact"><div class="v">★★★★</div><div class="k">Best Western Plus</div></div>'+
       '</div>'+
     '</div></section>'+
+    '<div class="dkh irv"><div class="t">Choose your <em>room.</em></div><div class="s">Scroll — the deck stacks as you go</div></div>'+
     '<section class="rdeck"><div class="iwx-wrap">'+ROOMS.map(cardHTML).join("")+'</div></section>'+
-    '<section style="padding:0 0 clamp(30px,5vh,60px)"><div class="iwx-wrap"><div class="rr-panel irv">'+
+    '<section style="padding:0 0 clamp(50px,8vh,100px)"><div class="iwx-wrap"><div class="rr-panel irv">'+
       '<div class="iwx-eyebrow">Book direct</div><h2>Best rate, <em>guaranteed.</em></h2>'+
       '<p class="sub">Booking direct gives you our best available rate — and direct access to our team for upgrades, early check-in requests, and special arrangements.</p>'+
       '<div class="plans">'+PLANS.map(function(p){return '<div class="plan">'+(p.badge?'<span class="bg9">'+p.badge+'</span>':'')+'<h4>'+p.name+'</h4><div class="tg">'+p.tag+'</div><div class="nt">'+p.note+'</div></div>';}).join("")+'</div>'+
       '<div style="margin-top:30px"><a class="iwx-btn" href="/book/">Check availability</a></div>'+
     '</div></div></section>';
     var f=document.getElementById("iwf");main.insertBefore(sec,f||null);
+    /* recolor footer tear: dark page above coral footer */
+    try{
+      if(f&&window.__iwWave){var t=f.querySelector(".iw-tear");if(t){t.outerHTML=window.__iwWave("#0c1116","#F5700A","#1a222c","#232c37");}}
+    }catch(e){}
     if(window.__iwxReveal)window.__iwxReveal(sec);
     return true;
   }
