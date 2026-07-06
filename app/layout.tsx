@@ -61,6 +61,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         {/* Preload the hero video's first frame (used by the intro + hero). */}
         <link rel="preload" as="image" href="/clips/ourstory_poster.jpg" fetchPriority="high" />
+        {/* iw-instant: render-blocking guard so the redesign paints first — hides the
+            original chrome/sections before first paint; iw-redesign.js rebuilds them. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              '(function(){try{var p=location.pathname;if(p.length>1&&p.slice(-1)==="/")p=p.slice(0,-1);var d=document.documentElement,c="header[data-nav]{display:none!important}";if(p!==""&&p!=="/"&&p!=="/index.html"){d.className+=" iw-int";var m=p.match(/^\\/(rooms(\\/(superior|deluxe|premier|family))?|dining|experiences|facilities|mice|offers|gallery|about|contact|faq)$/);if(m)d.setAttribute("data-iwxp",p.slice(1).replace(/\\//g,"-"));c+=\'html.iw-int footer[class*="bg-coral-deep"]{display:none!important}html[data-iwxp] main>:not([data-iwx]){display:none!important}html.iw-int,html.iw-int body{background:#faf9f6}html[data-iwxp="rooms"],html[data-iwxp="rooms"] body{background:#0c1116}\';}var s=document.createElement("style");s.id="iw-instant-css";s.textContent=c;(document.head||d).appendChild(s);}catch(e){}})();',
+          }}
+        />
       </head>
       <body>
         <Script src="/iw-redesign.js" strategy="beforeInteractive" />

@@ -1003,25 +1003,33 @@
   var P=norm();
   if(P===""||P==="/"||P==="/index.html") return; // home handled above
   var REBUILT=/^\/(rooms(\/(superior|deluxe|premier|family))?|dining|experiences|facilities|mice|offers|gallery|about|contact|faq)$/.test(P);
+  /* flag at parse time (beforeInteractive) so originals never paint */
+  try{
+    var DE=document.documentElement;
+    DE.classList.add("iw-int");
+    if(REBUILT)DE.setAttribute("data-iwxp",P.slice(1).replace(/\//g,"-"));
+  }catch(e){}
   try{
     if(!document.getElementById("iwx-core-css")){
       var s=document.createElement("style"); s.id="iwx-core-css";
       s.textContent=[
       /* hide original chrome on interior pages */
-      'body.iw-int footer[class*="bg-coral-deep"]{display:none!important}',
-      'body[data-iwx] main > :not([data-iwx]){display:none!important}',
+      'html.iw-int footer[class*="bg-coral-deep"]{display:none!important}',
+      'html[data-iwxp] main > :not([data-iwx]){display:none!important}',
       /* nav starts solid on interior pages */
-      'body.iw-int #iwnav::before{opacity:0}',
-      'body.iw-int #iwnav .nav-inner{width:auto;max-width:max-content;margin:0 auto;gap:clamp(16px,2.4vw,34px);padding:8px 10px 8px 20px;background:rgba(250,249,246,.5);backdrop-filter:blur(18px) saturate(1.5);-webkit-backdrop-filter:blur(18px) saturate(1.5);border-color:rgba(255,255,255,.45);box-shadow:0 10px 34px rgba(20,15,8,.16)}',
-      'body.iw-int #iwnav .nav-book{color:#2b2517;border-color:rgba(43,37,23,.25);padding:9px 18px}',
-      'body.iw-int #iwnav .nav-book:hover{color:#fff}',
-      'body.iw-int #iwnav .nav-brand{color:#2b2517;letter-spacing:.18em;font-size:clamp(17px,1.6vw,22px)}',
-      'body.iw-int #iwnav .nav-burger span{background:#2b2517}',
-      'body.iw-int #iwnav .nav-side{flex:0 0 auto}',
+      'html.iw-int #iwnav::before{opacity:0}',
+      'html.iw-int #iwnav .nav-inner{width:auto;max-width:max-content;margin:0 auto;gap:clamp(16px,2.4vw,34px);padding:8px 10px 8px 20px;background:rgba(250,249,246,.5);backdrop-filter:blur(18px) saturate(1.5);-webkit-backdrop-filter:blur(18px) saturate(1.5);border-color:rgba(255,255,255,.45);box-shadow:0 10px 34px rgba(20,15,8,.16)}',
+      'html.iw-int #iwnav .nav-book{color:#2b2517;border-color:rgba(43,37,23,.25);padding:9px 18px}',
+      'html.iw-int #iwnav .nav-book:hover{color:#fff}',
+      'html.iw-int #iwnav .nav-brand{color:#2b2517;letter-spacing:.18em;font-size:clamp(17px,1.6vw,22px)}',
+      'html.iw-int #iwnav .nav-burger span{background:#2b2517}',
+      'html.iw-int #iwnav .nav-side{flex:0 0 auto}',
       '#iwnav-menu a.iwx-act{color:#F5700A!important}',
       /* ---- shared editorial components ---- */
-      'body.iw-int{background:#faf9f6}',
-      'body.iw-int [data-iwx] section{display:block!important}',
+      'html.iw-int{background:#faf9f6}',
+      'html.iw-int body{background:#faf9f6}',
+      'html[data-iwxp="rooms"],html[data-iwxp="rooms"] body{background:#0c1116}',
+      'html.iw-int [data-iwx] section{display:block!important}',
       '[data-iwx]{font-family:"Hanken Grotesk",system-ui,sans-serif;color:#2b2517}',
       '.iwx-wrap{max-width:1240px;margin:0 auto;padding-left:clamp(22px,5vw,72px);padding-right:clamp(22px,5vw,72px)}',
       '.iwx-eyebrow{font-size:11px;font-weight:700;letter-spacing:.32em;text-indent:.02em;text-transform:uppercase;color:#F5700A}',
@@ -1087,11 +1095,11 @@
       '#iwf .fx-base a:hover{color:#fff}',
       '@media (max-width:820px){#iwf .fx-cols{grid-template-columns:1fr 1fr}#iwf .fx-cols .fx-about{grid-column:1/-1}}',
       /* ---- booking flow + legal re-skin (CSS only, no logic) ---- */
-      'body.iw-int .font-display{font-family:"Cormorant Garamond",Georgia,serif!important;font-weight:600!important;letter-spacing:-.01em}',
-      'body.iw-int .bg-sand{background:#faf9f6!important}',
-      'body.iw-int main{font-family:"Hanken Grotesk",system-ui,sans-serif}',
-      'body.iw-int input:focus-visible,body.iw-int select:focus-visible,body.iw-int textarea:focus-visible,body.iw-int button:focus-visible,body.iw-int a:focus-visible{outline:2px solid #F5700A;outline-offset:2px}',
-      'body.iw-int .ivy-legal h2{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.7rem;font-weight:600}',
+      'html.iw-int .font-display{font-family:"Cormorant Garamond",Georgia,serif!important;font-weight:600!important;letter-spacing:-.01em}',
+      'html.iw-int .bg-sand{background:#faf9f6!important}',
+      'html.iw-int main{font-family:"Hanken Grotesk",system-ui,sans-serif}',
+      'html.iw-int input:focus-visible,html.iw-int select:focus-visible,html.iw-int textarea:focus-visible,html.iw-int button:focus-visible,html.iw-int a:focus-visible{outline:2px solid #F5700A;outline-offset:2px}',
+      'html.iw-int .ivy-legal h2{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.7rem;font-weight:600}',
       ].join("");
       (document.head||document.documentElement).appendChild(s);
     }
@@ -1172,7 +1180,7 @@
       var st=document.createElement("style");st.id="iwx-rooms-css";
       st.textContent=[
       '#iwx-rooms{background:#0c1116;color:#faf9f6}',
-      'body[data-iwx="rooms"] #iwf{margin-top:0}',
+      'html[data-iwxp="rooms"] #iwf{margin-top:0}',
       '#iwx-rooms .iwx-hero .iwx-h{color:#faf9f6}',
       '#iwx-rooms .iwx-hero .iwx-h em{color:#F5B070}',
       '#iwx-rooms .iwx-hero .iwx-eyebrow{color:#F5B070}',
@@ -2250,7 +2258,7 @@
     if(!document.getElementById("iwx-fx-css")){
       var s=document.createElement("style");s.id="iwx-fx-css";
       s.textContent=[
-      'body.iw-int ::selection{background:#F5700A;color:#fff}',
+      'html.iw-int ::selection{background:#F5700A;color:#fff}',
       /* word-by-word headline reveal */
       '.iwx-h .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.08em;margin-bottom:-.08em}',
       '.iwx-h .w i{display:inline-block;font-style:inherit;transform:translateY(118%) rotate(1.6deg);transition:transform .95s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}',
