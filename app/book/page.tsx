@@ -23,9 +23,9 @@ export default function BookEntryPage() {
   }, []);
 
   return (
-    <div className="relative min-h-[100svh] w-full overflow-hidden">
+    <div className="relative min-h-[100svh] w-full overflow-hidden bg-ink">
       {/* full-bleed cycling backdrop */}
-      <div className="absolute inset-0 -z-10">
+      <div className="absolute inset-0 z-0">
         {BG.map((src, k) => (
           <img
             key={src}
@@ -39,7 +39,7 @@ export default function BookEntryPage() {
         <div className="absolute inset-0 bg-gradient-to-b from-ink/30 via-ink/10 to-ink/45" />
       </div>
 
-      <div className="flex min-h-[100svh] flex-col items-center justify-center px-4 py-24 md:py-28">
+      <div className="relative z-10 flex min-h-[100svh] flex-col items-center justify-center px-4 py-24 md:py-28">
         <motion.div
           initial={{ opacity: 0, y: 18, scale: 0.98 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
