@@ -70,7 +70,7 @@ export default function BookingWidget({ variant = "hero" }: { variant?: Variant 
         className={
           glass
             ? "relative isolate rounded-[26px] border border-white/15 bg-ink/55 p-2.5 shadow-[0_30px_80px_-30px_rgba(6,10,18,0.9)] ring-1 ring-white/10 backdrop-blur-2xl md:p-3"
-            : "rounded-3xl border border-clay/15 bg-pearl p-3 shadow-soft md:p-4"
+            : "relative rounded-[26px] border border-coral/20 bg-pearl-warm p-3 shadow-[0_44px_100px_-46px_rgba(46,38,20,0.6)] ring-1 ring-coral/10 md:p-4"
         }
       >
         {glass && (

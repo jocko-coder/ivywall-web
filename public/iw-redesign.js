@@ -1072,32 +1072,43 @@
       '.iwx-phero .iwx-h em{color:#F5B070}',
       '.iwx-phero .iwx-lead{color:rgba(250,249,246,.82)}',
       '.iwx-phero .iwx-fact .v{color:#F5B070}.iwx-phero .iwx-fact .k{color:rgba(250,249,246,.6)}',
-      /* footer — light editorial subscribe + GIANT bold-colour bleed wordmark (inspo scale) */
+      /* footer — Ballena editorial (brand · navigation · newsletter) + GIANT bold-orange wordmark */
       '#iwf{position:relative;overflow:hidden;background:#f6f0e3;color:#2b2517;margin-top:clamp(70px,10vh,120px);font-family:"Hanken Grotesk",system-ui,sans-serif}',
       '#iwf .iwx-wrap{position:relative;z-index:2}',
-      '#iwf .fx-sub{padding:clamp(76px,12vh,150px) 0 clamp(30px,5vh,56px);text-align:center}',
-      '#iwf .fx-eyebrow{font-size:11px;font-weight:700;letter-spacing:.34em;text-transform:uppercase;color:#F5700A}',
-      '#iwf .fx-h{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;font-size:clamp(40px,6.2vw,96px);line-height:.98;margin:16px auto 34px;color:#221c18;max-width:15ch;letter-spacing:-.01em}',
-      '#iwf .fx-h em{font-style:italic;font-weight:500;color:#F5700A}',
-      '#iwf .fx-form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;max-width:580px;margin:0 auto}',
-      '#iwf .fx-input{flex:1 1 300px;min-width:0;background:#fff;color:#2b2517;border:1px solid rgba(43,37,23,.14);border-radius:999px;padding:17px 26px;font:500 15px/1 "Hanken Grotesk",system-ui,sans-serif;box-shadow:0 22px 46px -30px rgba(46,38,20,.5)}',
-      '#iwf .fx-input::placeholder{color:#9a8f78}',
-      '#iwf .fx-input:focus{outline:2px solid #F5700A;outline-offset:3px}',
-      '#iwf .fx-submit{border:0;cursor:pointer;background:#F5700A;color:#fff;border-radius:999px;padding:17px 36px;font:700 12px/1 "Hanken Grotesk",system-ui,sans-serif;letter-spacing:.2em;text-transform:uppercase;transition:transform .25s ease,background .25s ease}',
-      '#iwf .fx-submit:hover{background:#e3650a;transform:translateY(-2px)}',
-      '#iwf .fx-note{height:0;overflow:hidden;margin:0 auto;font-size:13.5px;color:#2b2517;opacity:0;transition:opacity .45s ease}',
-      '#iwf .fx-note.on{height:auto;margin-top:18px;opacity:1}',
-      '#iwf .fx-cols{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:clamp(26px,4vw,64px);padding:clamp(30px,5vh,54px) 0;border-top:1px solid rgba(43,37,23,.14)}',
-      '#iwf .fx-cols h4{font-size:10.5px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:#F5700A;margin:0 0 14px}',
-      '#iwf .fx-cols a{display:block;color:#4d4433;text-decoration:none;font-size:14px;line-height:2.05}',
-      '#iwf .fx-cols a:hover{color:#F5700A}',
-      '#iwf .fx-cols p{color:#4d4433;font-size:14px;line-height:1.9;margin:0}',
-      '#iwf .fx-base{display:flex;flex-wrap:wrap;gap:10px 26px;align-items:center;justify-content:space-between;padding:20px 0 max(24px,env(safe-area-inset-bottom));border-top:1px solid rgba(43,37,23,.14);font-size:12px;color:#7a6c4c}',
-      '#iwf .fx-base a{color:#7a6c4c;text-decoration:none;margin-left:18px}',
+      '#iwf .fx-grid{display:grid;grid-template-columns:0.82fr 1.18fr;gap:clamp(30px,5vw,92px);padding:clamp(72px,13vh,168px) 0 clamp(30px,4vh,54px)}',
+      '#iwf .fx-right{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,72px);border-left:1px solid rgba(43,37,23,.16);padding-left:clamp(28px,4vw,72px)}',
+      '#iwf .fx-brand{max-width:360px}',
+      '#iwf .fx-brand .ph{width:clamp(150px,12vw,196px);aspect-ratio:3/4;border-radius:3px;overflow:hidden;box-shadow:0 32px 62px -30px rgba(46,38,20,.55)}',
+      '#iwf .fx-brand .ph img{width:100%;height:100%;object-fit:cover;display:block}',
+      '#iwf .fx-brand p{margin:22px 0 0;font-size:14px;line-height:1.72;color:#4d4433;max-width:34ch}',
+      '#iwf .fx-brand a{display:inline-flex;align-items:center;gap:12px;margin-top:20px;font:700 11px/1 "Hanken Grotesk",system-ui,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#221c18;text-decoration:none}',
+      '#iwf .fx-brand a .cir{width:30px;height:30px;border-radius:50%;background:#221c18;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:13px;transition:transform .3s ease,background .3s ease}',
+      '#iwf .fx-brand a:hover .cir{transform:translate(2px,-2px);background:#F5700A}',
+      '#iwf .fx-col h4{font:700 11px/1 "Hanken Grotesk",system-ui,sans-serif;letter-spacing:.3em;text-transform:uppercase;color:#a89a78;margin:0 0 clamp(26px,4vh,52px)}',
+      '#iwf .fx-nav a{display:block;width:max-content;font:600 clamp(16px,1.35vw,21px)/1 "Hanken Grotesk",system-ui,sans-serif;letter-spacing:.05em;text-transform:uppercase;color:#221c18;text-decoration:none;margin-bottom:clamp(16px,2vh,22px);transition:color .25s ease,letter-spacing .25s ease}',
+      '#iwf .fx-nav a:hover{color:#F5700A;letter-spacing:.11em}',
+      '#iwf .fx-nav a.ext .ar{display:inline-block;margin-left:8px;font-size:12px;transition:transform .3s ease}',
+      '#iwf .fx-nav a.ext:hover .ar{transform:translate(2px,-2px)}',
+      '#iwf .fx-nav .gap{height:clamp(18px,3vh,34px)}',
+      '#iwf .fx-news .fld{position:relative;margin-bottom:24px}',
+      '#iwf .fx-news label{display:block;font:700 10px/1 "Hanken Grotesk",system-ui,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#7a6c4c}',
+      '#iwf .fx-news input{width:100%;margin-top:11px;background:transparent;border:0;border-bottom:1px solid rgba(43,37,23,.3);padding:0 0 11px;font:500 15px/1.2 "Hanken Grotesk",system-ui,sans-serif;color:#221c18;outline:none;transition:border-color .25s ease}',
+      '#iwf .fx-news input::placeholder{color:transparent}',
+      '#iwf .fx-news input:focus{border-color:#F5700A}',
+      '#iwf .fx-news .sub{display:inline-flex;align-items:center;gap:14px;margin-top:8px;border:0;background:none;cursor:pointer;font:700 12px/1 "Hanken Grotesk",system-ui,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#221c18}',
+      '#iwf .fx-news .sub .cir{width:34px;height:34px;border-radius:50%;background:#F5700A;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:15px;transition:transform .3s ease}',
+      '#iwf .fx-news .sub:hover .cir{transform:translateX(4px)}',
+      '#iwf .fx-news .note{margin-top:16px;font-size:13px;color:#F5700A;opacity:0;height:0;overflow:hidden;transition:opacity .4s ease}',
+      '#iwf .fx-news .note.on{opacity:1;height:auto}',
+      '#iwf .fx-rule{height:1px;background:rgba(43,37,23,.22);margin:clamp(18px,3vh,34px) 0 0}',
+      '#iwf .fx-markwrap{position:relative;z-index:1;width:100%;overflow:hidden;padding:clamp(14px,2.4vh,32px) clamp(16px,2.6vw,44px) clamp(8px,1.2vh,18px)}',
+      '#iwf .fx-mark{display:flex;justify-content:space-between;align-items:flex-end;width:100%;font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;line-height:.82;color:#F5700A;user-select:none;pointer-events:none;font-size:clamp(60px,17vw,560px)}',
+      '#iwf .fx-mark span{display:block;line-height:.8}',
+      '#iwf .fx-base{display:flex;flex-wrap:wrap;gap:10px 26px;align-items:center;justify-content:space-between;padding:14px 0 max(24px,env(safe-area-inset-bottom));font:600 11px/1 "Hanken Grotesk",system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#7a6c4c}',
+      '#iwf .fx-base a{color:#7a6c4c;text-decoration:none;margin-left:16px}',
       '#iwf .fx-base a:hover{color:#F5700A}',
-      '#iwf .fx-markwrap{position:relative;z-index:1;width:100%;overflow:hidden;line-height:0;padding-top:clamp(8px,1.6vh,22px)}',
-      '#iwf .fx-mark{display:block;margin:0 auto -.16em;font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;text-align:center;white-space:nowrap;line-height:.72;letter-spacing:-.02em;color:#F5700A;user-select:none;pointer-events:none;font-size:clamp(96px,22vw,420px)}',
-      '@media (max-width:820px){#iwf .fx-cols{grid-template-columns:1fr 1fr}#iwf .fx-cols .fx-about{grid-column:1/-1}#iwf .fx-submit{flex:1 1 100%}}',
+      '@media (max-width:900px){#iwf .fx-grid{grid-template-columns:1fr;gap:40px}#iwf .fx-brand{max-width:none;display:flex;gap:26px;align-items:flex-start}#iwf .fx-brand .ph{flex:0 0 auto}#iwf .fx-brand p{margin-top:0}#iwf .fx-right{border-left:0;padding-left:0}}',
+      '@media (max-width:600px){#iwf .fx-brand{flex-direction:column}#iwf .fx-brand p{margin-top:20px}#iwf .fx-right{grid-template-columns:1fr;gap:34px}}',
       /* ---- booking flow + legal re-skin (CSS only, no logic) ---- */
       'html.iw-int .font-display{font-family:"Cormorant Garamond",Georgia,serif!important;font-weight:600!important;letter-spacing:-.01em}',
       'html.iw-int .bg-sand{background:#faf9f6!important}',
@@ -1123,37 +1134,41 @@
     var f=document.createElement("footer"); f.id="iwf"; f.setAttribute("data-iwx","");
     var y=new Date().getFullYear();
     f.innerHTML=
-      '<div class="iwx-wrap">'+
-      '<div class="fx-sub"><div class="fx-eyebrow">Stay in the know</div><h2 class="fx-h">Subscribe for <em>our latest.</em></h2>'+
-      '<form class="fx-form" novalidate><input class="fx-input" type="email" name="email" placeholder="Email address" aria-label="Email address" autocomplete="email" required><button class="fx-submit" type="submit">Submit</button></form>'+
-      '<div class="fx-note" role="status">Thank you! You are on the list.</div></div>'+
-      '<div class="fx-cols">'+
-      '<div class="fx-about"><h4>The Ivywall</h4><p>Best Western Plus The Ivywall Resort-Panglao<br>Tawala, Alona Beach Road, Panglao Island, Bohol 6340<br>+63 38 502 9000 · reservations@ivywall.com</p></div>'+
-      '<div><h4>Explore</h4><a href="/rooms/">Rooms &amp; Suites</a><a href="/dining/">Dining</a><a href="/experiences/">Experiences</a><a href="/facilities/">Facilities</a><a href="/gallery/">Gallery</a></div>'+
-      '<div><h4>Resort</h4><a href="/about/">Our Story</a><a href="/offers/">Offers</a><a href="/mice/">Meetings &amp; Events</a><a href="/faq/">FAQ</a><a href="/contact/">Contact</a></div>'+
+      '<div class="iwx-wrap"><div class="fx-grid">'+
+      '<div class="fx-brand">'+
+      '<div class="ph"><img src="/photos/BWPlus_Ivywall_02_Facade_Pool.jpg" alt="The Ivywall on Alona Beach"></div>'+
+      '<p>The first international-chain resort in Bohol &mdash; eighty rooms in native Filipino detail on Alona Beach, Panglao, moments from the airport.</p>'+
+      '<a href="https://ivywall-app.vercel.app/" target="_blank" rel="noopener">Guest App <span class="cir">&#8599;</span></a>'+
       '</div>'+
-      '<div class="fx-base"><span>© '+y+' Best Western Plus The Ivywall Resort-Panglao</span><span><a href="/privacy/">Privacy</a><a href="/cookies/">Cookies</a><a href="/terms/">Terms</a></span></div>'+
+      '<div class="fx-right">'+
+      '<div class="fx-col fx-nav"><h4>Navigation</h4>'+
+      '<a href="/rooms/">Rooms</a><a href="/dining/">Dining</a><a href="/experiences/">Experiences</a><a href="/gallery/">Gallery</a><a href="/about/">About</a><a href="/contact/">Contact</a>'+
+      '<div class="gap"></div>'+
+      '<a class="ext" href="https://www.facebook.com/bwplusivywallpanglao/" target="_blank" rel="noopener">Facebook <span class="ar">&#8599;</span></a>'+
+      '<a href="/offers/">Offers</a>'+
       '</div>'+
-      '<div class="fx-markwrap"><div class="fx-mark" aria-hidden="true">THE IVYWALL</div></div>';
+      '<div class="fx-col fx-news"><h4>Newsletter</h4>'+
+      '<form class="fx-nform" novalidate>'+
+      '<div class="fld"><label>Email</label><input type="email" name="email" aria-label="Email" autocomplete="email" required></div>'+
+      '<div class="fld"><label>First name</label><input type="text" name="first" aria-label="First name" autocomplete="given-name"></div>'+
+      '<div class="fld"><label>Last name</label><input type="text" name="last" aria-label="Last name" autocomplete="family-name"></div>'+
+      '<button class="sub" type="submit">Subscribe <span class="cir">&#8594;</span></button>'+
+      '<div class="note" role="status">Thank you! You are on the list.</div>'+
+      '</form>'+
+      '</div>'+
+      '</div></div><div class="fx-rule"></div></div>'+
+      '<div class="fx-markwrap"><div class="fx-mark" aria-hidden="true"><span>I</span><span>V</span><span>Y</span><span>W</span><span>A</span><span>L</span><span>L</span></div></div>'+
+      '<div class="iwx-wrap"><div class="fx-base"><span>The Ivywall &#169; '+y+' Best Western Plus</span><span><a href="/privacy/">Privacy</a><a href="/cookies/">Cookies</a><a href="/terms/">Terms</a></span></div></div>';
     main.appendChild(f);
     wireSub(); fitMark();
   }
-  function fitMark(){
-    try{
-      var el=document.querySelector("#iwf .fx-mark"); if(!el)return;
-      var wrap=el.parentElement; if(!wrap)return;
-      el.style.fontSize="10px";
-      var avail=wrap.clientWidth||el.scrollWidth; var natural=el.scrollWidth||1;
-      var size=10*(avail/natural)*0.995;
-      if(size>10) el.style.fontSize=size.toFixed(1)+"px";
-    }catch(e){}
-  }
+  function fitMark(){ /* wordmark spreads edge-to-edge via flex letter distribution; no JS sizing */ }
   function wireSub(){
     try{
-      var form=document.querySelector("#iwf .fx-form");
+      var form=document.querySelector("#iwf .fx-nform");
       if(!form||form.getAttribute("data-w"))return;
       form.setAttribute("data-w","1");
-      form.addEventListener("submit",function(e){e.preventDefault();var note=document.querySelector("#iwf .fx-note");form.style.display="none";if(note)note.classList.add("on");});
+      form.addEventListener("submit",function(e){e.preventDefault();var note=form.querySelector(".note");[].slice.call(form.querySelectorAll(".fld,.sub")).forEach(function(el){el.style.display="none";});if(note)note.classList.add("on");});
     }catch(e){}
   }
   function markNav(){
@@ -2327,8 +2342,7 @@
       '#iwf .fx-cols a::before{content:"→";position:absolute;left:-24px;opacity:0;transition:opacity .3s,left .3s;color:#ffe2c4}',
       '#iwf .fx-cols a:hover{transform:translateX(24px)}',
       '#iwf .fx-cols a:hover::before{opacity:1;left:-20px}',
-      '#iwf .fx-mark{transform:translateY(34%);opacity:0;transition:transform 1.3s cubic-bezier(.2,.7,.2,1),opacity 1.1s}',
-      '#iwf .fx-mark.in{transform:none;opacity:1}',
+      '#iwf .fx-mark{transform:none;opacity:1}',
       '@media (prefers-reduced-motion:reduce){#iwf .fx-mark{transform:none;opacity:1}}',
       /* deck depth (JS drives the variables) */
       '#iwx-rooms .rcard{transform-origin:top center;will-change:transform,filter}',
