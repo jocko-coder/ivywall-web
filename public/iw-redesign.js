@@ -1462,30 +1462,37 @@
     if(!document.getElementById("iwx-din-css")){
       var st=document.createElement("style");st.id="iwx-din-css";
       st.textContent=[
-      '#iwx-din .olive{position:relative;background:#21261d;color:#f2efe6;padding:calc(clamp(40px,7vh,90px) + 50px) 0 clamp(50px,8vh,100px)}',
-      '#iwx-din .rrow{display:grid;grid-template-columns:1.15fr 1fr;gap:clamp(28px,4vw,70px);align-items:center;padding:clamp(34px,6vh,70px) 0}',
-      '#iwx-din .rrow+.rrow{border-top:1px solid rgba(242,239,230,.14)}',
+      /* light, textured, generous editorial (minimalist) */
+      '#iwx-din{position:relative;background:#f5efe3}',
+      '#iwx-din .rest{position:relative;background:#f5efe3;color:#2b2517;padding:clamp(60px,10vh,140px) 0 clamp(56px,9vh,120px);overflow:hidden}',
+      '#iwx-din .rest::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(58% 46% at 10% 6%,rgba(245,112,10,.06),transparent 62%),radial-gradient(52% 42% at 94% 92%,rgba(212,162,76,.09),transparent 62%),radial-gradient(40% 30% at 80% 20%,rgba(190,94,67,.05),transparent 60%)}',
+      '#iwx-din .rest .iwx-wrap{position:relative;z-index:1}',
+      '#iwx-din .rrow{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,120px);align-items:center;padding:clamp(58px,10vh,132px) 0}',
+      '#iwx-din .rrow:first-child{padding-top:clamp(16px,2.5vh,36px)}',
+      '#iwx-din .rrow+.rrow{border-top:1px solid rgba(43,37,23,.13)}',
       '#iwx-din .rrow.flip .phw{order:2}',
       '#iwx-din .phw{position:relative}',
-      '#iwx-din .ph{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 30px 70px rgba(0,0,0,.4)}',
-      '#iwx-din .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.5s cubic-bezier(.2,.7,.2,1)}',
+      '#iwx-din .ph{position:relative;border-radius:3px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 44px 90px -34px rgba(46,38,20,.42)}',
+      '#iwx-din .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.6s cubic-bezier(.2,.7,.2,1)}',
       '#iwx-din .phw:hover .ph img{transform:scale(1.05)}',
-      '#iwx-din .spc{position:absolute;right:-18px;bottom:-26px;width:min(200px,38%);border-radius:16px;overflow:hidden;box-shadow:0 22px 50px rgba(0,0,0,.45);border:4px solid #21261d;transform:rotate(2.4deg)}',
-      '#iwx-din .rrow.flip .spc{right:auto;left:-18px;transform:rotate(-2.4deg)}',
-      '#iwx-din .spc img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover}',
-      '#iwx-din .spc .l{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(0,0,0,.72));color:#fff;font:600 9.5px/1.2 "Hanken Grotesk",sans-serif;letter-spacing:.14em;text-transform:uppercase;padding:16px 10px 9px}',
-      '#iwx-din .bd .iwx-eyebrow{color:#F5B070}',
-      '#iwx-din .bd h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:clamp(32px,3.8vw,58px);line-height:.98;color:#f7f4ea;margin:14px 0 12px}',
-      '#iwx-din .bd .tg{font-size:15px;line-height:1.7;color:rgba(242,239,230,.75);max-width:46ch}',
-      '#iwx-din .chips{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 0}',
-      '#iwx-din .chip{border:1px solid rgba(242,239,230,.28);border-radius:999px;padding:8px 15px;font:600 10.5px/1 "Hanken Grotesk",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,239,230,.85)}',
-      '#iwx-din .sg{margin:24px 0 0}',
-      '#iwx-din .sg .t{font:700 10px/1 "Hanken Grotesk",sans-serif;letter-spacing:.28em;text-transform:uppercase;color:#F5B070;margin-bottom:12px}',
-      '#iwx-din .sg ul{list-style:none;margin:0;padding:0;font-size:14.5px;line-height:2.05;color:rgba(242,239,230,.9)}',
-      '#iwx-din .sg li::before{content:"✦";color:#F5700A;margin-right:10px;font-size:11px}',
-      '#iwx-din .bd .iwx-cl{margin-top:26px;color:#f7f4ea}',
-      '#iwx-din .bd .iwx-cl .lbl{border-color:rgba(242,239,230,.4)}',
-      '@media (max-width:820px){#iwx-din .rrow{grid-template-columns:1fr;gap:40px}#iwx-din .rrow.flip .phw{order:0}#iwx-din .spc{right:8px;bottom:-20px}#iwx-din .rrow.flip .spc{left:8px}}',
+      '#iwx-din .spc{position:absolute;right:-24px;bottom:-30px;width:min(188px,40%);border-radius:2px;overflow:hidden;box-shadow:0 28px 58px -20px rgba(46,38,20,.5);border:7px solid #f5efe3}',
+      '#iwx-din .rrow.flip .spc{right:auto;left:-24px}',
+      '#iwx-din .spc img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}',
+      '#iwx-din .spc .l{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(20,15,8,.72));color:#fff;font:600 9.5px/1.2 "Hanken Grotesk",sans-serif;letter-spacing:.14em;text-transform:uppercase;padding:16px 10px 9px}',
+      '#iwx-din .bd .iwx-eyebrow{color:#F5700A}',
+      '#iwx-din .bd h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;font-size:clamp(40px,5.2vw,88px);line-height:.97;color:#221c18;margin:16px 0 14px;letter-spacing:-.012em}',
+      '#iwx-din .bd .tg{font-size:clamp(15px,1.15vw,17px);line-height:1.75;color:#6b6147;max-width:46ch}',
+      '#iwx-din .chips{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 0}',
+      '#iwx-din .chip{border:1px solid rgba(43,37,23,.2);border-radius:999px;padding:8px 15px;font:600 10.5px/1 "Hanken Grotesk",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#6b6147}',
+      '#iwx-din .sg{margin:28px 0 0}',
+      '#iwx-din .sg .t{font:700 10px/1 "Hanken Grotesk",sans-serif;letter-spacing:.28em;text-transform:uppercase;color:#F5700A;margin-bottom:14px}',
+      '#iwx-din .sg ul{list-style:none;margin:0;padding:0;font-size:15px;line-height:2.1;color:#4d4433}',
+      '#iwx-din .sg li{position:relative;padding-left:24px}',
+      '#iwx-din .sg li::before{content:"";position:absolute;left:0;top:.92em;width:13px;height:1px;background:#F5700A}',
+      '#iwx-din .bd .iwx-cl{margin-top:30px;color:#221c18}',
+      '#iwx-din .bd .iwx-cl .lbl{border-color:rgba(43,37,23,.32)}',
+      '#iwx-din .din-close{position:relative;background:#f5efe3;text-align:center;padding:clamp(24px,4vh,64px) 0 clamp(76px,12vh,150px)}',
+      '@media (max-width:820px){#iwx-din .rrow{grid-template-columns:1fr;gap:46px}#iwx-din .rrow.flip .phw{order:0}#iwx-din .ph{aspect-ratio:4/3}#iwx-din .spc{right:10px;bottom:-22px;width:44%}#iwx-din .rrow.flip .spc{left:10px}}',
       ].join("");
       (document.head||document.documentElement).appendChild(st);
     }
@@ -1511,11 +1518,11 @@
       '<h1 class="iwx-h irv" style="margin-top:18px">Bohol on a <em>plate.</em></h1>'+
       '<p class="iwx-lead irv" style="margin-top:22px">Three distinct venues, one shared belief: that the best meals are slow, local, and shared. Our chefs work with Bohol farmers, fishermen, and chocolatiers — and finish with global technique.</p>'+
       '</div></div></section>'+
-    '<section class="olive">'+(window.__iwWave?window.__iwWave("#faf9f6","#21261d","#2c332a","#fbfdf8"):"")+
+    '<section class="rest">'+
       '<div class="iwx-wrap">'+REST.map(rowHTML).join("")+'</div></section>'+
-    '<section style="position:relative;padding:calc(clamp(50px,8vh,100px) + 50px) 0 0">'+(window.__iwWave?window.__iwWave("#21261d","#faf9f6","#2c332a","#3a4136"):"")+
+    '<section class="din-close">'+
       '<div class="iwx-wrap" style="text-align:center"><div class="iwx-eyebrow irv">Room service, too</div>'+
-      '<h2 class="iwx-h irv" style="font-size:clamp(30px,4vw,56px);margin-top:16px">Dinner on your <em>balcony?</em></h2>'+
+      '<h2 class="iwx-h irv" style="font-size:clamp(30px,4vw,56px);margin-top:16px;color:#221c18">Dinner on your <em>balcony?</em></h2>'+
       '<p class="iwx-lead irv" style="margin:18px auto 28px">Room service is available for every category — from a Teraza nightcap to breakfast on the terrace.</p>'+
       '<a class="iwx-btn irv" href="/book/">Book your stay</a></div></section>';
     var f=document.getElementById("iwf");main.insertBefore(sec,f||null);
@@ -2420,12 +2427,7 @@
     var pq=document.querySelector("#iwx-ab .pq img");if(pq){pq.style.height="120%";pq.style.top="-10%";addPlx(pq,.1);}
     document.querySelectorAll("#iwx-room .gal .g img").forEach(function(el,i){if(i===0){el.style.height="112%";el.style.top="-6%";addPlx(el,.055);}});
     plxLoop();
-    /* 7 · marquees */
-    var din=document.getElementById("iwx-din");
-    if(din&&!din.querySelector(".iwx-marq")){
-      var ol=din.querySelector(".olive")||din;
-      ol.appendChild(marquee(["Seafood paella","Calamansi mojito","Boodle feast","Kinilaw na tanigue","Lechon sliders","Halo-halo","Buko pandan","Bohol honey prawns"]));
-    }
+    /* 7 · marquees (experiences only — dining kept clean & minimalist) */
     var exp=document.getElementById("iwx-exp");
     if(exp&&!exp.querySelector(".iwx-marq")){
       var lastx=exp.querySelector("section:last-child");
