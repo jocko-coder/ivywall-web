@@ -1075,7 +1075,7 @@
       /* footer — Ballena editorial (brand · navigation · newsletter) + GIANT bold-orange wordmark */
       '#iwf{position:relative;overflow:hidden;background:#f6f0e3;color:#2b2517;margin-top:clamp(70px,10vh,120px);font-family:"Hanken Grotesk",system-ui,sans-serif}',
       '#iwf .iwx-wrap{position:relative;z-index:2}',
-      '#iwf .fx-grid{display:grid;grid-template-columns:0.82fr 1.18fr;gap:clamp(30px,5vw,92px);padding:clamp(72px,13vh,168px) 0 clamp(30px,4vh,54px)}',
+      '#iwf .fx-grid{display:grid;grid-template-columns:0.82fr 1.18fr;gap:clamp(30px,5vw,92px);padding:clamp(48px,7vh,104px) 0 clamp(26px,4vh,50px)}',
       '#iwf .fx-right{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,72px);border-left:1px solid rgba(43,37,23,.16);padding-left:clamp(28px,4vw,72px)}',
       '#iwf .fx-brand{max-width:360px}',
       '#iwf .fx-brand .ph{width:clamp(150px,12vw,196px);aspect-ratio:3/4;border-radius:3px;overflow:hidden;box-shadow:0 32px 62px -30px rgba(46,38,20,.55)}',
@@ -1101,9 +1101,10 @@
       '#iwf .fx-news .note{margin-top:16px;font-size:13px;color:#F5700A;opacity:0;height:0;overflow:hidden;transition:opacity .4s ease}',
       '#iwf .fx-news .note.on{opacity:1;height:auto}',
       '#iwf .fx-rule{height:1px;background:rgba(43,37,23,.22);margin:clamp(18px,3vh,34px) 0 0}',
-      '#iwf .fx-markwrap{position:relative;z-index:1;width:100%;overflow:hidden;padding:clamp(14px,2.4vh,32px) clamp(16px,2.6vw,44px) clamp(8px,1.2vh,18px)}',
-      '#iwf .fx-mark{display:flex;justify-content:space-between;align-items:flex-end;width:100%;font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;line-height:.82;color:#F5700A;user-select:none;pointer-events:none;font-size:clamp(60px,17vw,560px)}',
+      '#iwf .fx-markwrap{position:relative;z-index:1;width:100%;overflow:hidden;padding:clamp(30px,5vh,74px) clamp(14px,2.2vw,38px) clamp(8px,1.3vh,20px)}',
+      '#iwf .fx-mark{display:flex;justify-content:space-between;align-items:flex-end;width:100%;font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;line-height:.82;color:#F5700A;user-select:none;pointer-events:none;font-size:clamp(46px,14vw,400px)}',
       '#iwf .fx-mark span{display:block;line-height:.8}',
+      '#iwf .fx-mark .sp{flex:0 0 auto;width:.34em}',
       '#iwf .fx-base{display:flex;flex-wrap:wrap;gap:10px 26px;align-items:center;justify-content:space-between;padding:14px 0 max(24px,env(safe-area-inset-bottom));font:600 11px/1 "Hanken Grotesk",system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#7a6c4c}',
       '#iwf .fx-base a{color:#7a6c4c;text-decoration:none;margin-left:16px}',
       '#iwf .fx-base a:hover{color:#F5700A}',
@@ -1157,7 +1158,7 @@
       '</form>'+
       '</div>'+
       '</div></div><div class="fx-rule"></div></div>'+
-      '<div class="fx-markwrap"><div class="fx-mark" aria-hidden="true"><span>I</span><span>V</span><span>Y</span><span>W</span><span>A</span><span>L</span><span>L</span></div></div>'+
+      '<div class="fx-markwrap"><div class="fx-mark" aria-hidden="true"><span>T</span><span>H</span><span>E</span><span class="sp"></span><span>I</span><span>V</span><span>Y</span><span>W</span><span>A</span><span>L</span><span>L</span></div></div>'+
       '<div class="iwx-wrap"><div class="fx-base"><span>The Ivywall &#169; '+y+' Best Western Plus</span><span><a href="/privacy/">Privacy</a><a href="/cookies/">Cookies</a><a href="/terms/">Terms</a></span></div></div>';
     main.appendChild(f);
     wireSub(); fitMark();
@@ -1760,27 +1761,35 @@
   function norm(p){p=p||location.pathname;if(p.length>1&&p.slice(-1)==="/")p=p.slice(0,-1);return p;}
   if(norm()!=="/offers")return;
   var OFFERS=[
-    {badge:"Free Breakfast",name:"Breakfast On Us",tag:"Breakfast at Teraza is on us — every morning of your stay.",perks:["Complimentary Teraza breakfast for 2","Free Wi-Fi & pool access","Early check-in (subject to availability)"],terms:"Free perk · min 1 night"},
-    {badge:"Free Dinner",name:"Stay Longer, Save More",tag:"4 nights → save 15%. 7 nights → save 22%. Bohol slows you down anyway.",perks:["15–22% off the flexible rate","One complimentary dinner for two","Daily breakfast included"],terms:"Save 18% · min 4 nights"},
-    {badge:"Romantic",name:"Honeymoon by the Sea",tag:"A romantic Boholano honeymoon set against the Bohol Sea.",perks:["Sparkling wine & rose petal welcome","Couples massage on day 2","Sunset dinner at Teraza Rooftop","Late checkout · 4pm"],terms:"Save 12% · min 3 nights"},
-    {badge:"Free Transfer",name:"Touchdown · Free Transfer",tag:"Free private airport transfer from Panglao International (TAG).",perks:["Complimentary private transfer from TAG","Welcome drink on arrival","Late checkout (subject to availability)"],terms:"Free perk · min 2 nights"}
+    {badge:"Free Breakfast",name:"Breakfast On Us",tag:"Breakfast at Teraza is on us — every morning of your stay.",perks:["Complimentary Teraza breakfast for 2","Free Wi-Fi & pool access","Early check-in (subject to availability)"],terms:"Free perk · min 1 night",photo:"/photos/BWPlus_Ivywall_12_Morning_Teraza.jpg"},
+    {badge:"Free Dinner",name:"Stay Longer, Save More",tag:"4 nights → save 15%. 7 nights → save 22%. Bohol slows you down anyway.",perks:["15–22% off the flexible rate","One complimentary dinner for two","Daily breakfast included"],terms:"Save 18% · min 4 nights",photo:"/photos/BWPlus_Ivywall_16_Pool_Area.jpg"},
+    {badge:"Romantic",name:"Honeymoon by the Sea",tag:"A romantic Boholano honeymoon set against the Bohol Sea.",perks:["Sparkling wine & rose petal welcome","Couples massage on day 2","Sunset dinner at Teraza Rooftop","Late checkout · 4pm"],terms:"Save 12% · min 3 nights",photo:"/photos/BWPlus_Ivywall_09_Rooftop_Bar_Night.jpg"},
+    {badge:"Free Transfer",name:"Touchdown · Free Transfer",tag:"Free private airport transfer from Panglao International (TAG).",perks:["Complimentary private transfer from TAG","Welcome drink on arrival","Late checkout (subject to availability)"],terms:"Free perk · min 2 nights",photo:"/photos/BWPlus_Ivywall_01_Aerial_Beach.jpg"}
   ];
   try{
     if(!document.getElementById("iwx-off-css")){
       var st=document.createElement("style");st.id="iwx-off-css";
       st.textContent=[
-      '#iwx-off .card{display:grid;grid-template-columns:1fr auto;gap:clamp(20px,3vw,60px);align-items:end;background:#fffdf8;border:1px solid rgba(43,37,23,.1);border-radius:26px;padding:clamp(28px,3.4vw,54px);box-shadow:0 18px 46px rgba(35,25,12,.08);position:relative;overflow:hidden}',
-      '#iwx-off .card.alt{background:#dde4d5}',
-      '#iwx-off .grid{display:grid;gap:clamp(16px,2vw,26px);margin-top:clamp(28px,4vh,46px)}',
-      '#iwx-off .bdg{display:inline-flex;background:#F5700A;color:#fff;border-radius:999px;padding:7px 15px;font:700 10.5px/1 "Hanken Grotesk",sans-serif;letter-spacing:.16em;text-transform:uppercase}',
-      '#iwx-off .card h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:clamp(30px,3.6vw,54px);line-height:1;color:#17140f;margin:16px 0 10px}',
-      '#iwx-off .card .tg{font-size:15px;line-height:1.65;color:#6b6147;max-width:52ch}',
-      '#iwx-off .card ul{list-style:none;margin:18px 0 0;padding:0;max-width:520px}',
-      '#iwx-off .side{text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:16px}',
-      '#iwx-off .trm{font:600 11px/1.5 "Hanken Grotesk",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#7a6c4c}',
-      '#iwx-off .note{margin-top:clamp(30px,5vh,50px);border:1px dashed rgba(43,37,23,.25);border-radius:20px;padding:26px;text-align:center;font-size:14px;color:#6b6147}',
-      '#iwx-off .note a{color:#C4540A;font-weight:600;text-decoration:none;border-bottom:1px solid rgba(196,84,10,.4)}',
-      '@media (max-width:820px){#iwx-off .card{grid-template-columns:1fr}#iwx-off .side{align-items:flex-start;text-align:left}}',
+      '#iwx-off .orow{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,96px);align-items:center;padding:clamp(46px,8vh,110px) 0;border-top:1px solid rgba(43,37,23,.12)}',
+      '#iwx-off .orow.flip .omedia{order:2}',
+      '#iwx-off .omedia{position:relative;border-radius:4px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 46px 92px -42px rgba(46,38,20,.42)}',
+      '#iwx-off .omedia img{width:100%;height:100%;object-fit:cover;transition:transform 1.6s cubic-bezier(.2,.7,.2,1)}',
+      '#iwx-off .orow:hover .omedia img{transform:scale(1.045)}',
+      '#iwx-off .otop{display:flex;align-items:center;gap:14px}',
+      '#iwx-off .onum{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:clamp(15px,1.2vw,18px);color:#b3a585}',
+      '#iwx-off .obadge{display:inline-block;background:#F5700A;color:#fff;border-radius:999px;padding:6px 14px;font:700 10px/1 "Hanken Grotesk",system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase}',
+      '#iwx-off .oname{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;font-size:clamp(34px,4.4vw,72px);line-height:.98;letter-spacing:-.01em;color:#221c18;margin:18px 0 12px}',
+      '#iwx-off .otag{font-size:clamp(15px,1.15vw,17px);line-height:1.7;color:#6b6147;max-width:46ch}',
+      '#iwx-off .operks{list-style:none;margin:24px 0 0;padding:0;display:grid;gap:12px}',
+      '#iwx-off .operks li{position:relative;padding-left:26px;font-size:14.5px;line-height:1.5;color:#4d4433}',
+      '#iwx-off .operks li::before{content:"";position:absolute;left:0;top:.72em;width:14px;height:1px;background:#F5700A}',
+      '#iwx-off .ofoot{display:flex;align-items:center;gap:26px;flex-wrap:wrap;margin-top:clamp(26px,4vh,38px)}',
+      '#iwx-off .oterms{font:700 11px/1 "Hanken Grotesk",system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#7a6c4c}',
+      '#iwx-off .obtn{display:inline-flex;align-items:center;gap:10px;background:#221c18;color:#fff;border-radius:999px;padding:14px 27px;font:700 11.5px/1 "Hanken Grotesk",system-ui,sans-serif;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;transition:background .3s ease,transform .3s ease}',
+      '#iwx-off .obtn:hover{background:#F5700A;transform:translateY(-2px)}',
+      '#iwx-off .onote{margin:clamp(40px,7vh,90px) 0 0;border-top:1px solid rgba(43,37,23,.12);padding-top:clamp(30px,5vh,52px);text-align:center;font-size:15px;line-height:1.7;color:#6b6147;max-width:60ch;margin-left:auto;margin-right:auto}',
+      '#iwx-off .onote a{color:#C4540A;font-weight:600;text-decoration:none;border-bottom:1px solid rgba(196,84,10,.4)}',
+      '@media (max-width:820px){#iwx-off .orow{grid-template-columns:1fr;gap:26px;padding:clamp(40px,7vh,70px) 0}#iwx-off .orow.flip .omedia{order:0}}',
       ].join("");
       (document.head||document.documentElement).appendChild(st);
     }
@@ -1796,9 +1805,9 @@
       '<div class="iwx-rule irv"></div>'+
       '<p class="iwx-lead irv">A handful of thoughtful packages — extra value the team built around the rhythms of a Panglao stay. Pick the one that fits your trip.</p>'+
     '</div></section>'+
-    '<section><div class="iwx-wrap"><div class="grid">'+
-      OFFERS.map(function(o,i){return '<article class="card'+(i%2?" alt":"")+' irv"><div><span class="bdg">'+o.badge+'</span><h2>'+o.name+'</h2><p class="tg">'+o.tag+'</p><ul class="iwx-tick">'+o.perks.map(function(p){return "<li>"+p+"</li>";}).join("")+'</ul></div><div class="side"><span class="trm">'+o.terms+'</span><a class="iwx-btn" href="/book/">Book this offer</a></div></article>';}).join("")+
-      '</div><div class="note irv">Looking for something specific — a private dining setup, a corporate group rate, a wedding block? <a href="/contact/">Tell us</a> and we’ll put together a package.</div>'+
+    '<section><div class="iwx-wrap">'+
+      OFFERS.map(function(o,i){return '<article class="orow'+(i%2?" flip":"")+' irv"><div class="omedia"><img src="'+o.photo+'" alt="'+o.name+'" loading="lazy"></div><div class="obody"><div class="otop"><span class="onum">'+("0"+(i+1))+'</span><span class="obadge">'+o.badge+'</span></div><h2 class="oname">'+o.name+'</h2><p class="otag">'+o.tag+'</p><ul class="operks">'+o.perks.map(function(p){return "<li>"+p+"</li>";}).join("")+'</ul><div class="ofoot"><span class="oterms">'+o.terms+'</span><a class="obtn" href="/book/">Book this offer &#8599;</a></div></div></article>';}).join("")+
+      '<div class="onote irv">Looking for something specific &mdash; a private dining setup, a group rate, a wedding block? <a href="/contact/">Tell us</a> and we will build a package around it.</div>'+
     '</div></section>';
     var f=document.getElementById("iwf");main.insertBefore(sec,f||null);
     if(window.__iwxReveal)window.__iwxReveal(sec);
