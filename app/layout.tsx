@@ -71,7 +71,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        <Script src="/iw-redesign.js?v=10" strategy="beforeInteractive" />
+        <Script src="/iw-redesign.js?v=11" strategy="beforeInteractive" />
         <Providers>
           <CustomCursor />
           <ScrollProgressBar />

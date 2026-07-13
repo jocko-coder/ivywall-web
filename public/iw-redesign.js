@@ -649,85 +649,131 @@
   else window.addEventListener("load", function(){ setTimeout(init,350); });
 })();
 
-/* iw-bohol-v2 */
+/* iw-bohol-v3 : Bohol on a plate — cinematic dish ribbon (pinned horizontal on desktop, native swipe on mobile) */
 (function () {
-  "use strict";if(!(location.pathname==="/"||location.pathname==="/index.html"||location.pathname===""))return;
-  var EYEBROW = "Two restaurants · one menu of memory";
-  var HEAD = 'BOHOL ON<br>A <span class="orange">PLATE</span>';
-  var DINING_HREF = "/dining/";
-  var SLIDES = ["/photos/BWPlus_Ivywall_21_Boodle_Platter.jpg","/photos/BWPlus_Ivywall_10_Signature_Seafood.jpg","/photos/BWPlus_Ivywall_22_Banana_Cocktail.jpg","/photos/BWPlus_Ivywall_09_Rooftop_Bar_Night.jpg","/photos/ivy_sop_boodle_beach.jpg","/photos/BWPlus_Ivywall_07_Restaurant.jpg"];
-  var IMAGES = [
-    { img:"/photos/BWPlus_Ivywall_21_Boodle_Platter.jpg",    css:"top:22%;left:1.5%;width:clamp(175px,21vw,380px);height:clamp(215px,42vh,460px);z-index:6;", ox:130, oy:0,   tag:"Boodle <b>feast</b>" },
-    { img:"/photos/BWPlus_Ivywall_10_Signature_Seafood.jpg", css:"top:3%;left:37%;width:clamp(130px,14vw,250px);height:clamp(105px,17vh,210px);z-index:4;",   ox:0,   oy:90,  tag:"Seafood <b>paella</b>" },
-    { img:"/photos/BWPlus_Ivywall_22_Banana_Cocktail.jpg",   css:"top:33%;left:15%;width:clamp(105px,12vw,210px);height:clamp(180px,33vh,350px);z-index:7;",  ox:90,  oy:-10, tag:"Calamansi <b>&amp; coconut</b>" },
-    { img:"/photos/BWPlus_Ivywall_07_Restaurant.jpg",        css:"bottom:3%;left:2%;width:clamp(170px,21vw,370px);height:clamp(125px,20vh,250px);z-index:5;",  ox:120, oy:-80, tag:"" },
-    { img:"/photos/BWPlus_Ivywall_19_Alon_Dining_Alt.jpg",   css:"bottom:3.5%;left:39%;width:clamp(130px,14vw,250px);height:clamp(105px,17vh,210px);z-index:4;",ox:0,   oy:-100,tag:"Alon <b>all-day</b>" },
-    { img:"/photos/BWPlus_Ivywall_09_Rooftop_Bar_Night.jpg", css:"top:24%;right:1.5%;width:clamp(175px,21vw,380px);height:clamp(195px,40vh,440px);z-index:6;", ox:-130,oy:0,   tag:"Teraza <b>rooftop</b>" },
-    { img:"/photos/BWPlus_Ivywall_12_Morning_Teraza.jpg",    css:"top:35%;right:15%;width:clamp(130px,14vw,250px);height:clamp(155px,28vh,310px);z-index:7;",  ox:-90, oy:0,   tag:"Morning <b>teraza</b>" },
-    { img:"/photos/BWPlus_Ivywall_15_Agos_Pool_Bar.jpg",     css:"bottom:3%;right:2%;width:clamp(160px,19vw,330px);height:clamp(120px,20vh,250px);z-index:5;",  ox:-120,oy:-80, tag:"Agos <b>pool bar</b>" },
-    { img:"/photos/BWPlus_Ivywall_08_Bar_Lounge.jpg",        css:"top:54%;right:31%;width:clamp(105px,12vw,210px);height:clamp(115px,21vh,250px);z-index:3;",  ox:-70, oy:-10, tag:"" },
-    { img:"/photos/BWPlus_Ivywall_18_Bar_Lounge_Alt.jpg",    css:"top:9%;left:21%;width:clamp(100px,12vw,200px);height:clamp(80px,15vh,180px);z-index:3;",     ox:80,  oy:80,  tag:"" },
-    { img:"/photos/BWPlus_Ivywall_17_Facade_Teraza.jpg",     css:"top:44%;left:45%;width:clamp(105px,12vw,210px);height:clamp(75px,14vh,160px);z-index:2;",    ox:0,   oy:10,  tag:"" },
-    { img:"/photos/ivy_sop_boodle_beach.jpg",                css:"bottom:19%;left:21%;width:clamp(125px,14vw,260px);height:clamp(150px,26vh,300px);z-index:7;",ox:80,  oy:-50, tag:"Beach <b>boodle</b>" }
-  ];;
+  "use strict"; if(!(location.pathname==="/"||location.pathname==="/index.html"||location.pathname===""))return;
+  var EYEBROW="Two restaurants · one rooftop";
+  var DINING_HREF="/dining/";
+  var DISHES=[
+    {img:"/photos/BWPlus_Ivywall_21_Boodle_Platter.jpg", nm:"Boodle Feast", nt:"A banana-leaf spread, laid by hand for the whole table."},
+    {img:"/photos/BWPlus_Ivywall_10_Signature_Seafood.jpg", nm:"Seafood Paella", nt:"Saffron rice and the day&rsquo;s catch off Panglao."},
+    {img:"/photos/ivy_sop_boodle_beach.jpg", nm:"Beach Boodle", nt:"Toes in the sand, a feast laid along the shore."},
+    {img:"/photos/BWPlus_Ivywall_09_Rooftop_Bar_Night.jpg", nm:"Teraza Rooftop", nt:"Calamansi mojitos over Alona &mdash; four till late."},
+    {img:"/photos/BWPlus_Ivywall_22_Banana_Cocktail.jpg", nm:"Island Pours", nt:"Coconut, calamansi and Bohol honey, over ice."},
+    {img:"/photos/BWPlus_Ivywall_07_Restaurant.jpg", nm:"Alon, All Day", nt:"Slow mornings and honest Filipino suppers."}
+  ];
   function clamp(v,a,b){return v<a?a:v>b?b:v;}
-  function lerp(a,b,t){return a+(b-a)*t;}
-  function eo(t){return 1-Math.pow(1-t,3);}
-  var built=false, sectionEl=null, slideLayer=null, slideEls=[], imgEls=[], headEl=null, cueEl=null, ctaEl=null, raf=0, sIdx=0, sTimer=0, pfs=[], dims=[];
-  function build() {
-    if (built && document.getElementById("iwbp")) return true;
-    var orig = document.querySelector('section[data-ivy-station="dining"]');
+  var built=false, sec=null, track=null, cue=null, shift=0, raf=0;
+
+  function injectCSS(){
+    if(document.getElementById("iwbp2-css")) return;
+    var st=document.createElement("style"); st.id="iwbp2-css";
+    st.textContent=[
+      "#iwbp2{position:relative;background:#1b1913;color:#f3ecdb;font-family:'Hanken Grotesk',system-ui,sans-serif}",
+      "#iwbp2 *{box-sizing:border-box}",
+      "#iwbp2 .bp2-stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;align-items:center}",
+      "#iwbp2 .bp2-glow{position:absolute;inset:0;z-index:0;pointer-events:none;background:radial-gradient(60% 55% at 10% 16%,rgba(245,112,10,.12),transparent 60%),radial-gradient(55% 48% at 92% 90%,rgba(212,162,76,.10),transparent 60%)}",
+      "#iwbp2 .bp2-track{position:relative;z-index:1;flex:0 0 auto;display:flex;align-items:center;gap:clamp(22px,2.4vw,46px);padding:0 max(6vw,26px);will-change:transform}",
+      "#iwbp2 .bp2-intro{flex:0 0 auto;width:min(88vw,540px)}",
+      "#iwbp2 .bp2-eyebrow{font-size:11px;letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;color:#F5700A;font-weight:600;margin-bottom:22px}",
+      "#iwbp2 .bp2-title{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-style:italic;line-height:.9;letter-spacing:.01em;font-size:clamp(54px,8.2vw,138px);color:#f7f1e2;margin:0}",
+      "#iwbp2 .bp2-title .o{color:#F5700A}",
+      "#iwbp2 .bp2-lead{margin-top:26px;max-width:40ch;font-size:clamp(14px,1.05vw,16px);line-height:1.7;color:#d7ccb4}",
+      "#iwbp2 .bp2-hint{margin-top:32px;display:inline-flex;align-items:center;gap:14px;font-size:10.5px;letter-spacing:.28em;text-transform:uppercase;color:#b7ab90;font-weight:600}",
+      "#iwbp2 .bp2-hint .ln{width:46px;height:1px;background:linear-gradient(90deg,#F5700A,transparent)}",
+      "#iwbp2 .bp2-rail{display:flex;align-items:center;gap:clamp(20px,2.2vw,40px)}",
+      "#iwbp2 .bp2-card{flex:0 0 auto;position:relative;width:clamp(300px,29vw,430px);height:min(74vh,660px);border-radius:9px;overflow:hidden;background:#0c0c0c;box-shadow:0 40px 80px rgba(0,0,0,.5)}",
+      "#iwbp2 .bp2-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.1s cubic-bezier(.22,1,.36,1)}",
+      "#iwbp2 .bp2-card:hover img{transform:scale(1.06)}",
+      "#iwbp2 .bp2-card .grad{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,6,4,.12),rgba(8,6,4,0) 32%,rgba(8,6,4,.86))}",
+      "#iwbp2 .bp2-num{position:absolute;top:18px;left:22px;z-index:2;font-family:'Cormorant Garamond',Georgia,serif;font-size:23px;font-style:italic;color:#f7f1e2;opacity:.92}",
+      "#iwbp2 .bp2-cap{position:absolute;left:22px;right:20px;bottom:22px;z-index:2}",
+      "#iwbp2 .bp2-cap .rule{width:34px;height:2px;background:#F5700A;margin:0 0 14px}",
+      "#iwbp2 .bp2-cap .nm{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:clamp(25px,2vw,34px);line-height:1.02;color:#fff}",
+      "#iwbp2 .bp2-cap .nt{margin-top:9px;font-size:12.5px;line-height:1.55;color:#e7dcc6;max-width:32ch}",
+      "#iwbp2 .bp2-end{flex:0 0 auto;width:min(80vw,360px);display:flex;flex-direction:column;justify-content:center}",
+      "#iwbp2 .bp2-end .q{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:clamp(27px,2.3vw,40px);line-height:1.16;color:#f3ecdb;margin-bottom:28px}",
+      "#iwbp2 .bp2-cta{display:inline-flex;gap:12px;align-items:center;font-weight:600;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#f3ecdb;text-decoration:none;border-bottom:1px solid rgba(243,236,219,.45);padding-bottom:6px;transition:gap .25s,color .25s,border-color .25s;align-self:flex-start}",
+      "#iwbp2 .bp2-cta:hover{gap:18px;color:#F5700A;border-color:#F5700A}",
+      "#iwbp2 .bp2-cue{position:absolute;left:0;right:0;bottom:22px;text-align:center;z-index:3;font-size:10.5px;letter-spacing:.32em;text-indent:.32em;color:#c9bd9f;font-weight:600;pointer-events:none}",
+      "#iwbp2 .bp2-cue .bar{display:block;width:1px;height:28px;margin:8px auto 0;background:rgba(201,189,159,.5)}",
+      "@media (max-width:820px){",
+        "#iwbp2 .bp2-stage{position:static;height:auto;display:block;padding:clamp(54px,8vh,92px) 0}",
+        "#iwbp2 .bp2-track{flex-direction:column;align-items:stretch;gap:0;padding:0;transform:none!important}",
+        "#iwbp2 .bp2-intro{width:auto;padding:0 7vw clamp(26px,4vh,38px)}",
+        "#iwbp2 .bp2-title{font-size:clamp(46px,14vw,84px)}",
+        "#iwbp2 .bp2-lead{max-width:none}",
+        "#iwbp2 .bp2-hint{margin-top:24px}",
+        "#iwbp2 .bp2-rail{gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:2px 7vw 12px;scrollbar-width:none}",
+        "#iwbp2 .bp2-rail::-webkit-scrollbar{display:none}",
+        "#iwbp2 .bp2-card{scroll-snap-align:center;width:80vw;height:62vh}",
+        "#iwbp2 .bp2-end{width:auto;padding:clamp(28px,4vh,40px) 7vw 0}",
+        "#iwbp2 .bp2-cue{display:none}",
+      "}"
+    ].join("");
+    (document.head||document.documentElement).appendChild(st);
+  }
+
+  function build(){
+    if(built && document.getElementById("iwbp2")) return true;
+    injectCSS();
+    var orig=document.querySelector('section[data-ivy-station="dining"]');
     var parentRef, beforeRef;
-    if (orig) { var anchor=orig; if(orig.parentElement&&orig.parentElement.tagName==="DIV"&&orig.parentElement.children.length===1&&orig.parentElement.parentElement)anchor=orig.parentElement; parentRef=anchor.parentNode; beforeRef=anchor; }
+    if(orig){ var anchor=orig; if(orig.parentElement&&orig.parentElement.tagName==="DIV"&&orig.parentElement.children.length===1&&orig.parentElement.parentElement)anchor=orig.parentElement; parentRef=anchor.parentNode; beforeRef=anchor; }
     else { var main=document.querySelector("main"); if(!main) return false; parentRef=main; beforeRef=null; }
-    var s=document.createElement("section"); s.id="iwbp";
-    var slideHtml=SLIDES.map(function(src,i){return '<div class="s'+(i===0?" on":"")+'"><img src="'+src+'" loading="lazy" decoding="async" alt="Dining at The Ivywall"></div>';}).join("");
-    var imgsHtml=IMAGES.map(function(im){return '<div class="bp-img" style="'+im.css+'"><img src="'+im.img+'" loading="lazy" decoding="async" alt="Bohol dining at The Ivywall">'+(im.tag?'<div class="tag">'+im.tag+'</div>':'')+'</div>';}).join("");
-    s.innerHTML='<div class="bp-stage">'+
-      '<div class="bp-slide">'+slideHtml+'</div><div class="bp-slidescrim"></div>'+
-      '<div class="bp-collage">'+imgsHtml+'</div>'+
-      '<div class="bp-eyebrow">'+EYEBROW+'</div>'+
-      '<h2 class="bp-head">'+HEAD+'</h2>'+
-      '<div class="bp-cue">SCROLL<span class="bar"></span></div>'+
-      '<div class="bp-cta"><a href="'+DINING_HREF+'">Explore dining <span>→</span></a></div>'+
+
+    var cards=DISHES.map(function(d,i){
+      return '<div class="bp2-card"><img src="'+d.img+'" loading="lazy" decoding="async" alt="'+d.nm+' — dining at The Ivywall">'+
+        '<div class="grad"></div><div class="bp2-num">'+("0"+(i+1))+'</div>'+
+        '<div class="bp2-cap"><div class="rule"></div><div class="nm">'+d.nm+'</div><div class="nt">'+d.nt+'</div></div></div>';
+    }).join("");
+
+    var s=document.createElement("section"); s.id="iwbp2";
+    s.innerHTML='<div class="bp2-stage"><div class="bp2-glow"></div>'+
+      '<div class="bp2-track">'+
+        '<div class="bp2-intro">'+
+          '<div class="bp2-eyebrow">'+EYEBROW+'</div>'+
+          '<h2 class="bp2-title">Bohol,<br><span class="o">on a plate.</span></h2>'+
+          '<p class="bp2-lead">Two restaurants, a rooftop bar and a boodle spread meant for sharing &mdash; the island&rsquo;s flavours, plated with a four-star hand.</p>'+
+          '<span class="bp2-hint"><span class="ln"></span>Scroll to explore</span>'+
+        '</div>'+
+        '<div class="bp2-rail">'+cards+'</div>'+
+        '<div class="bp2-end"><div class="q">&ldquo;Come hungry. Leave part of the family.&rdquo;</div>'+
+          '<a class="bp2-cta" href="'+DINING_HREF+'">Explore dining <span>&rarr;</span></a></div>'+
+      '</div>'+
+      '<div class="bp2-cue">SCROLL<span class="bar"></span></div>'+
     '</div>';
+
     parentRef.insertBefore(s, beforeRef);
-    sectionEl=s; slideLayer=s.querySelector(".bp-slide"); slideEls=[].slice.call(s.querySelectorAll(".bp-slide .s"));
-    imgEls=[].slice.call(s.querySelectorAll(".bp-img")); headEl=s.querySelector(".bp-head"); cueEl=s.querySelector(".bp-cue"); ctaEl=s.querySelector(".bp-cta");
-    pfs=imgEls.map(function(el){var z=parseInt(getComputedStyle(el).zIndex)||3;return 0.04+z*0.05;});
-    dims=imgEls.map(function(el){var z=parseInt(getComputedStyle(el).zIndex)||3;return z<=2?0.62:(z<=3?0.8:1);});
-    imgEls.forEach(function(el){var z=parseInt(getComputedStyle(el).zIndex)||3;var bl=z<=2?2.4:(z<=3?1.1:(z<=4?0.4:0));if(bl)el.style.filter="blur("+bl+"px)";});
+    sec=s; track=s.querySelector(".bp2-track"); cue=s.querySelector(".bp2-cue");
     built=true;
-    if (sTimer) clearInterval(sTimer);
-    if(window.innerWidth>820){ sTimer=setInterval(function(){ sIdx=(sIdx+1)%slideEls.length; slideEls.forEach(function(el,i){ el.classList.toggle("on", i===sIdx); }); }, 2600); }
-    try{ var io2=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)s.classList.add("bpin");});},{threshold:0.04}); io2.observe(s);
-      if(s.getBoundingClientRect().top < window.innerHeight*0.95) s.classList.add("bpin");
-    }catch(e){ s.classList.add("bpin"); }
-    update();
+    measure(); update();
     return true;
   }
-  function update() {
-    if(!sectionEl) return;
-    if(window.innerWidth<=820){ return; }
-    var vh=window.innerHeight, total=sectionEl.offsetHeight-vh;
-    var p = total>0 ? clamp(-sectionEl.getBoundingClientRect().top/total,0,1) : 0;
-    if (slideLayer) slideLayer.style.opacity = clamp(1-(p-0.07)/0.16,0,1).toFixed(3);
-    for (var i=0;i<imgEls.length;i++){
-      var rp = eo(clamp((p-0.03 - i*0.022)/0.52,0,1));
-      var sc = lerp(1.06,1,rp);
-      var enty = lerp(vh*0.40, 0, rp);
-      var par = -p*vh*(pfs[i]||0.1);
-      imgEls[i].style.opacity = (rp*(dims[i]||1)).toFixed(3);
-      imgEls[i].style.transform = "translateY("+(enty+par).toFixed(1)+"px) scale("+sc.toFixed(3)+")";
-    }
-    if (cueEl) cueEl.style.opacity = clamp(1-p/0.10,0,1).toFixed(3);
-    if (ctaEl) ctaEl.style.opacity = clamp((p-0.82)/0.14,0,1).toFixed(3);
+
+  function measure(){
+    if(!sec||!track) return;
+    if(window.innerWidth<=820){ sec.style.height="auto"; shift=0; return; }
+    var vh=window.innerHeight;
+    shift=Math.max(0, track.scrollWidth - window.innerWidth);
+    sec.style.height=(vh+shift)+"px";
+  }
+  function update(){
+    if(!sec||!track) return;
+    if(window.innerWidth<=820){ track.style.transform="none"; if(cue)cue.style.opacity="0"; return; }
+    if(shift<=0){ track.style.transform="translateX(0)"; return; }
+    var top=sec.getBoundingClientRect().top;
+    var p=clamp(-top/shift,0,1);
+    track.style.transform="translate3d("+(-shift*p).toFixed(1)+"px,0,0)";
+    if(cue) cue.style.opacity=clamp(1-p/0.06,0,1).toFixed(3);
   }
   function onScroll(){ if(raf) return; raf=requestAnimationFrame(function(){ raf=0; update(); }); }
-  function enforce(){ if(!document.getElementById("iwbp")){ built=false; build(); } }
+  function onResize(){ measure(); update(); }
+  function enforce(){ if(!document.getElementById("iwbp2")){ built=false; build(); } }
   function init(){ if(!build()){ setTimeout(init,120); return; }
-    window.addEventListener("scroll", onScroll, {passive:true}); window.addEventListener("resize", onScroll, {passive:true});
-    setTimeout(update,400); setTimeout(update,1200);
+    window.addEventListener("scroll", onScroll, {passive:true});
+    window.addEventListener("resize", onResize, {passive:true});
+    setTimeout(onResize,400); setTimeout(onResize,1200);
     try{ var mo=new MutationObserver(function(){enforce();}); mo.observe(document.querySelector("main")||document.body,{childList:true}); setTimeout(function(){try{mo.disconnect();}catch(e){}},9000);}catch(e){}
   }
   if (document.readyState==="complete") setTimeout(init,350);
@@ -772,6 +818,7 @@
         '<span class="ex-l"><span class="ex-num">0' + (i + 1) + '</span>' +
           '<span class="ex-main"><h3 class="ex-title">' + e.t + '</h3>' +
             '<span class="ex-tags"><span>' + e.c + '</span><span>' + e.h + '</span></span></span></span>' +
+        '<span class="ex-th"><img src="' + e.img + '" alt="" loading="lazy" decoding="async"></span>' +
         arrow + '</a>';
     }).join("");
 
@@ -792,6 +839,23 @@
     pvImg = preview.querySelector("img");
     document.body.appendChild(preview);
 
+    if (!document.getElementById("iwex-th-css")) {
+      var thst = document.createElement("style"); thst.id = "iwex-th-css";
+      thst.textContent = [
+        "#iwex .ex-th{display:none}",
+        "@media (max-width:820px){",
+          "#iwex .ex-row{padding-left:clamp(8px,2vw,28px)!important}",
+          "#iwex .ex-num{display:none}",
+          "#iwex .ex-arrow{display:none}",
+          "#iwex .ex-l{gap:0}",
+          "#iwex .ex-th{display:block;flex:0 0 auto;width:84px;height:108px;border-radius:12px;overflow:hidden;margin-left:16px;background:#0c0c0c}",
+          "#iwex .ex-th img{width:100%;height:100%;object-fit:cover;display:block}",
+          "#iwex-preview{display:none!important}",
+        "}"
+      ].join("");
+      document.head.appendChild(thst);
+    }
+
     built = true;
     wire(s);
     return true;
@@ -804,9 +868,13 @@
   }
   function wire(s) {
     var rows = [].slice.call(s.querySelectorAll(".ex-row"));
+    // On mobile we show an inline thumbnail per row (see #iwex .ex-th), so the
+    // cursor-follow / long-press preview is disabled there — taps just navigate.
+    var touchPreview = window.innerWidth > 820;
     rows.forEach(function (r) {
       r.addEventListener("mouseenter", function () { pvImg.src = r.getAttribute("data-img"); preview.classList.add("on"); });
       r.addEventListener("mouseleave", function () { preview.classList.remove("on"); });
+      if (!touchPreview) return;
       var pressTimer = 0, longPressed = false, tsx = 0, tsy = 0;
       r.addEventListener("touchstart", function (e) {
         longPressed = false; var t = e.touches[0]; tsx = t.clientX; tsy = t.clientY;
