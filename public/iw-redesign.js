@@ -273,10 +273,11 @@
 
     // ---- video frame: full-bleed -> centered portrait frame (first ~58% of scroll) ----
     var mob = vw < 760;
-    var ts = mob ? 0 : easeInOut(clamp(p / 0.58, 0, 1));
-    var Hs = vh * (mob ? 0.40 : 0.54), Ws = Hs * 0.82;  // small (portrait) target
-    if (Ws > vw * (mob ? 0.78 : 0.58)) { Ws = vw * (mob ? 0.78 : 0.58); Hs = Ws / 0.82; }
-    var sx = (vw - Ws) / 2, sy = vh * (mob ? 0.085 : 0.07);   // upper-centered
+    // Zoom-out runs on BOTH mobile and desktop now (mobile completes a touch sooner).
+    var ts = easeInOut(clamp(p / (mob ? 0.5 : 0.58), 0, 1));
+    var Hs = vh * (mob ? 0.46 : 0.54), Ws = Hs * 0.82;  // small (portrait) target
+    if (Ws > vw * (mob ? 0.82 : 0.58)) { Ws = vw * (mob ? 0.82 : 0.58); Hs = Ws / 0.82; }
+    var sx = (vw - Ws) / 2, sy = vh * (mob ? 0.075 : 0.07);   // upper-centered
     var L = lerp(0, sx, ts), T = lerp(0, sy, ts);
     var W = lerp(vw, Ws, ts), H = lerp(vh, Hs, ts);
     var R = lerp(0, 16, ts);
@@ -287,7 +288,7 @@
     // ---- wordmark + location reveal (frame overlaps the top of the word, inspo-style) ----
     var wt = easeOut(clamp((p - (mob?0.05:0.16)) / (mob?0.34:0.42), 0, 1));
     word.style.opacity = wt;
-    word.style.top = (mob ? vh * 0.58 : vh * 0.62) + "px";   // mobile: wordmark straddles the bottom of the video (overlap)
+    word.style.top = (mob ? vh * 0.54 : vh * 0.62) + "px";   // wordmark sits so the video frame's bottom overlaps its top
     word.style.transform = "translateY(" + (-50 + (1 - wt) * 6) + "%)";
     loc.style.opacity = clamp((p - 0.34) / 0.30, 0, 1);
     loc.style.top = (vh * (mob ? 0.70 : 0.85)) + "px";
