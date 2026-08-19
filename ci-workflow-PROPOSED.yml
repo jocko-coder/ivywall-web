@@ -1,0 +1,46 @@
+# Token used by the overnight watch lacks GitHub's "workflow" scope, so it cannot
+# write directly to .github/workflows/*.yml (GitHub blocks that path specifically,
+# separate from normal repo contents:write).
+#
+# To activate: move this file to .github/workflows/ci.yml on a branch with a
+# token/account that has the workflow scope, then merge.
+#
+# What it does: runs typecheck, lint and build on every push to main or dan/*
+# and on PRs into main, so a broken build is caught before Vercel ever sees it,
+# not after.
+
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - 'dan/**'
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Install
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: '1'
